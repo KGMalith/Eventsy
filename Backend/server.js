@@ -49,6 +49,64 @@ const corsOptions = {
 	}
 };
 
+var path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// =================================== File upload routes start =======================================
+
+//upload research papers
+app.post('/api/upload-research-paper', cors(corsOptions), (req, res) => {
+	if (req.files === null) {
+		return res.status(500).json({ success: false, msg: 'Research paper document not selected. Please select document', showMessage: true });
+	}
+	const file = req.files.file;
+	if (file.mimetype !== 'application/pdf') {
+		return res.status(500).json({ success: false, msg: 'Invalid file format', showMessage: true });
+	}
+
+	const fileName = `${Date.now()}_${file.name}`;
+
+	file.mv(`${__dirname}/uploads/pdf/research_papers/${fileName}`, err => {
+		if (err) {
+			console.error(err);
+			return res.status(500).json({ success: false, msg: err, showMessage: true });
+		}
+		let data = {
+			file_path: `${config.Uploads.UPLOAD_BASE_URL}/uploads/pdf/research_papers/${fileName}`
+		};
+
+		res.status(200).json({ success: true, msg: 'uploaded', data: data, showMessage: true });
+	});
+});
+
+
+//upload workshop proposal
+app.post('/api/upload-workshop-proposal', cors(corsOptions), (req, res) => {
+	if (req.files === null) {
+		return res.status(500).json({ success: false, msg: 'Workshop proposal document not selected. Please select document', showMessage: true });
+	}
+	const file = req.files.file;
+	if (file.mimetype !== 'application/pdf') {
+		return res.status(500).json({ success: false, msg: 'Invalid file format', showMessage: true });
+	}
+
+	const fileName = `${Date.now()}_${file.name}`;
+
+	file.mv(`${__dirname}/uploads/pdf/workshop_proposals/${fileName}`, err => {
+		if (err) {
+			console.error(err);
+			return res.status(500).json({ success: false, msg: err, showMessage: true });
+		}
+		let data = {
+			file_path: `${config.Uploads.UPLOAD_BASE_URL}/uploads/pdf/workshop_proposals/${fileName}`
+		};
+
+		res.status(200).json({ success: true, msg: 'uploaded', data: data, showMessage: true });
+	});
+});
+
+// =================================== File upload routes end =======================================
+
 // ===================== main routes ==================================
 app.use('/api', cors(corsOptions), Routes);
 
