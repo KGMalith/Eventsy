@@ -31,6 +31,9 @@ let UserSchema = new Schema({
 		required:true
 		// 0 => normal user(attendee) ,  1=> resercher , 2 =>workshp conductor , 3=> reviewer , 4=> editor , 5=> admin  
 	},
+	user_image: {
+		type: String
+	},
 	is_signup_completed:{
 		type: Boolean,
 		default: false
@@ -43,19 +46,23 @@ let UserSchema = new Schema({
 		type:Boolean,
 		default:false
 	},
-	media_file_details:{
-		media_file:{
-			type: String
+	event_details:{
+		media_file_details: {
+			media_file: {
+				type: String
+			},
+			media_file_status: {
+				type: Number,
+				default: 0
+				// 0 => pending ,  1=> accepted , -1 => rejected 
+			}
 		},
-		media_file_status:{
-			type: Number,
-			default: 0
-			// 0 => pending ,  1=> accepted , -1 => rejected 
+		is_event_created:{
+			type: Boolean,
+			default: false
 		}
-	},
-	user_image:{
-		type: String
 	}
+	
 });
 
 module.exports = mongoose.model('User',UserSchema);

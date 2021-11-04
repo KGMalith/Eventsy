@@ -6,7 +6,7 @@ const BadRequestException = require('./../../util/exceptions/badRequestException
 module.exports.getAllWorkshopProposalSubmissions = async () => {
 	// eslint-disable-next-line no-useless-catch
 	try {
-		let WorkshopConductorList = await User.find({ role: 2, is_signup_completed: true, is_email_verified: true, 'media_file_details.media_file_status': 0 });
+		let WorkshopConductorList = await User.find({ role: 2, is_signup_completed: true, is_email_verified: true, 'event_details.media_file_details.media_file_status': 0 });
 
 		let array_data_set = [];
 
@@ -48,7 +48,7 @@ module.exports.viewSingleWorkshopProposalSubmission = async (requestBody) => {
 			workshop_conductor_email_address: WorkshopConductorObj.email,
 			workshop_conductor_name: WorkshopConductorObj.name_title + ' ' + WorkshopConductorObj.first_name + ' ' + WorkshopConductorObj.last_name,
 			workshop_conductor_mobile_number: WorkshopConductorObj.mobile_number,
-			media_file: WorkshopConductorObj.media_file_details.media_file
+			media_file: WorkshopConductorObj.event_details.media_file_details.media_file
 		};
 
 		return {
@@ -69,7 +69,7 @@ module.exports.approveWorkshopProposal = async (requestUser, requestBody) => {
 			throw new BadRequestException('Invalid user id');
 		}
 
-		WorkshopConductorObj.media_file_details.media_file_status = 1;
+		WorkshopConductorObj.event_details.media_file_details.media_file_status = 1;
 		WorkshopConductorObj.save();
 
 		let notificationArray = [];
@@ -113,7 +113,7 @@ module.exports.rejectWorkshopProposal = async (requestUser, requestBody) => {
 			throw new BadRequestException('Invalid user id');
 		}
 
-		WorkshopConductorObj.media_file_details.media_file_status = -1;
+		WorkshopConductorObj.event_details.media_file_details.media_file_status = -1;
 		WorkshopConductorObj.save();
 
 		let notificationArray = [];
