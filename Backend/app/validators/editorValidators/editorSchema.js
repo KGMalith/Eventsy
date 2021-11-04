@@ -143,22 +143,23 @@ const schema = {
 		workshop_description: Joi.string().trim().required(),
 		workshop_date_and_time: Joi.date().required()
 	}),
+	getEventPendingResearchPaperValidationSchema: Joi.object({
+		user_id: Joi.string().trim().required(),
+	}),
 	addPresentationValidationSchema:Joi.object({
-		speaker_id: Joi.string().trim().required(),
+		user_id: Joi.string().trim().required(),
 		presentation_topic: Joi.string().trim().required(),
 		presentation_description: Joi.string().trim().required(),
 		presentation_date_and_time:Joi.date().required()
 	}),
 	editPresentationValidationSchema: Joi.object({
 		presentation_id: Joi.string().trim().required(),
-		speaker_id: Joi.string().trim().required(),
 		presentation_topic: Joi.string().trim().required(),
 		presentation_description: Joi.string().trim().required(),
 		presentation_date_and_time: Joi.date().required()
 	}),
 	editTempPresentationValidationSchema: Joi.object({
 		presentation_id: Joi.string().trim().required(),
-		speaker_id: Joi.string().trim().required(),
 		presentation_topic: Joi.string().trim().required(),
 		presentation_description: Joi.string().trim().required(),
 		presentation_date_and_time: Joi.date().required()

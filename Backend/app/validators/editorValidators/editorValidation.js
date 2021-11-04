@@ -24,6 +24,7 @@ const {
 	getSingleConferenceValidationSchema,
 	getSingleTempConferencePreviewValidationSchema,
 	getSingleConferencePreviewValidationSchema,
+	getEventPendingResearchPaperValidationSchema,
 } = require('./editorSchema');
 
 
@@ -162,6 +163,18 @@ module.exports = {
 	},
 	editTempWorkshopValidation: async (req, res, next) => {
 		const respond = await editTempWorkshopValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	getEventPendingResearchPaperValidation: async (req, res, next) => {
+		const respond = await getEventPendingResearchPaperValidationSchema.validate(req.body);
 		if (respond.error) {
 			res.status(500).json({
 				success: false,

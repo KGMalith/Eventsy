@@ -67,9 +67,12 @@ module.exports.userSignup = async (requestBody) => {
 			last_name: requestBody.last_name,
 			affliation: requestBody.role === 1 && requestBody.affiliation,
 			role: requestBody.role,
-			media_file_details:{
-				media_file: media_file_url,
+			event_details:{
+				media_file_details: {
+					media_file: media_file_url,
+				}
 			}
+			
 		};
 
 		//save created user object to database

@@ -6,7 +6,7 @@ const BadRequestException = require('./../../util/exceptions/badRequestException
 module.exports.getAllPendingResearchPaperSubmissions = async () => {
 	// eslint-disable-next-line no-useless-catch
 	try {
-		let ReviewerList = await User.find({ role: 1, is_signup_completed: true, is_email_verified: true, 'media_file_details.media_file_status':0 });
+		let ReviewerList = await User.find({ role: 1, is_signup_completed: true, is_email_verified: true, 'event_details.media_file_details.media_file_status':0 });
 
 		let array_data_set = [];
 
@@ -15,6 +15,7 @@ module.exports.getAllPendingResearchPaperSubmissions = async () => {
 			let return_data = {
 				researcher_id: ReviewerList[index]._id,
 				researcher_email_address: ReviewerList[index].email,
+				researcher_affliation: ReviewerList[index].affliation,
 				researcher_name: ReviewerList[index].name_title + ' ' + ReviewerList[index].first_name + ' ' + ReviewerList[index].last_name,
 				researcher_mobile_number: ReviewerList[index].mobile_number
 			}; 
@@ -46,9 +47,10 @@ module.exports.viewSingleResearchPaperSubmission = async (requestBody) => {
 		let return_data = {
 			researcher_id: researcherObj._id,
 			researcher_email_address: researcherObj.email,
+			researcher_affliation: researcherObj.affliation,
 			researcher_name: researcherObj.name_title + ' ' + researcherObj.first_name + ' ' + researcherObj.last_name,
 			researcher_mobile_number: researcherObj.mobile_number,
-			media_file: researcherObj.media_file_details.media_file
+			media_file: researcherObj.event_details.media_file_details.media_file
 		}; 
 
 		return {
@@ -69,7 +71,7 @@ module.exports.approveResearchPaper = async (requestUser, requestBody) => {
 			throw new BadRequestException('Invalid user id');
 		}
         
-		researcherObj.media_file_details.media_file_status = 1;
+		researcherObj.event_details.media_file_details.media_file_status = 1;
 		researcherObj.save();
 
 		let notificationArray = [];
@@ -113,7 +115,7 @@ module.exports.rejectResearchPaper = async (requestUser, requestBody) => {
 			throw new BadRequestException('Invalid user id');
 		}
 
-		researcherObj.media_file_details.media_file_status = -1;
+		researcherObj.event_details.media_file_details.media_file_status = -1;
 		researcherObj.save();
 
 		let notificationArray = [];
