@@ -4,6 +4,7 @@ let mongoose = require('mongoose');
 let User = require('../../schema/user');
 let VerificationToken = require('../../schema/verificationTokenSchema');
 let Speaker = require('../../schema/speakers');
+let Notification = require('../../schema/notification');
 
 // Other required files
 let randomstring = require('randomstring');
@@ -164,6 +165,33 @@ module.exports.validateEmail = async (requestBody) => {
 		userObj.is_signup_completed = true;
 		userObj.$session(session);
 		await userObj.save();
+
+		if (userObj.role === 1 || userObj.role === 2){
+			let notificationArray = [];
+			let notify = {
+				created_by: userObj._id,
+				message: userObj.role === 1 ? 'New research paper submited' : userObj.role === 2 && 'New workshop proposal submitted'
+			};
+			notificationArray.push(notify);
+
+			//check are there any exisiting notification object
+			let notificationObj = await Notification.findOne({ user_role: 3 }).session(session);
+
+			if (notificationObj) {
+				notificationObj.notification.push(notify);
+				notificationObj.$session(session);
+				notificationObj.save();
+			} else {
+				//create notification
+				let notification = {
+					user_role: 3,
+					notification: notificationArray
+				};
+				let newNotification = new Notification(notification);
+				newNotification.$session(session);
+				await newNotification.save();
+			}
+		}
 
 		//delete generated token
 		await VerificationToken.deleteMany({ user_email: requestBody.user_email }).session(session);
