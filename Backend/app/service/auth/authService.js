@@ -373,3 +373,53 @@ module.exports.resendToken = async (requestBody) => {
 		session.endSession();
 	}
 };
+
+module.exports.resetPassword = async (requestBody) => {
+	//initiate session
+	const session = await mongoose.startSession();
+	//starting transaction
+	session.startTransaction();
+
+	try {
+		//convert code to int
+		let code = parseInt(requestBody.verification_code);
+
+		//get token object
+		let tokenObj = await VerificationToken.findOne({ user_email: requestBody.user_email, token: code }).session(session);
+
+		//check token is exist
+		if (!tokenObj) {
+			throw new BadRequestException('Verification token invalid or expired!');
+		}
+		//get user Obj
+		let userObj = await User.findOne({ email: requestBody.user_email }).session(session);
+
+		if (!userObj) {
+			throw new BadRequestException('Invalid user!');
+		}
+
+		//encrypt password
+		let salt = genSaltSync(10);
+		let encrypted_password = hashSync(requestBody.new_password, salt);
+
+		userObj.is_email_verified = true;
+		userObj.password = encrypted_password;
+
+		userObj.$session(session);
+		await userObj.save();
+
+		await VerificationToken.deleteMany({ user_email: requestBody.user_email }).session(session);
+
+		await session.commitTransaction();
+
+		return {
+			msg: 'Password reset successfully'
+		};
+
+	} catch (err) {
+		await session.abortTransaction();
+		throw err;
+	} finally {
+		session.endSession();
+	}
+};

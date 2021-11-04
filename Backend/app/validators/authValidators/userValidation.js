@@ -1,4 +1,4 @@
-const {userSignupValidationSchema,userSigninValidationSchema,validateEmailSchema, forgotPasswordValidationSchema, resendTokenValidationSchema}  = require('./userSchema');
+const {userSignupValidationSchema,userSigninValidationSchema,validateEmailSchema, forgotPasswordValidationSchema, resendTokenValidationSchema, resetPasswordValidationSchema}  = require('./userSchema');
 
 module.exports = {
 	userSignupValidation:async(req,res,next) =>{
@@ -51,6 +51,18 @@ module.exports = {
 	},
 	resendTokenValidation: async (req, res, next) => {
 		const respond = await resendTokenValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	resetPasswordValidation: async (req, res, next) => {
+		const respond = await resetPasswordValidationSchema.validate(req.body);
 		if (respond.error) {
 			res.status(500).json({
 				success: false,
