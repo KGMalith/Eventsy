@@ -124,6 +124,7 @@ const schema = {
 		image_type: Joi.string().trim().required()
 	}),
 	addWorkshopValidationSchema: Joi.object({
+		user_id: Joi.string().trim().required(),
 		speakers_id_list:Joi.array().items(Joi.string().trim().required()),
 		workshop_name: Joi.string().trim().required(),
 		workshop_description:Joi.string().trim().required(),
@@ -144,6 +145,9 @@ const schema = {
 		workshop_date_and_time: Joi.date().required()
 	}),
 	getEventPendingResearchPaperValidationSchema: Joi.object({
+		user_id: Joi.string().trim().required(),
+	}),
+	getEventPendingWorkshopProposalValidationSchema: Joi.object({
 		user_id: Joi.string().trim().required(),
 	}),
 	addPresentationValidationSchema:Joi.object({
