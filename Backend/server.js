@@ -20,10 +20,10 @@ const PORT = config.server.port;
 
 //Create mongoose connection
 mongoose.connect(config.db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
 });
 
 //make app use json
@@ -40,13 +40,13 @@ const whitelist = config.whiteListedOrigins;
 
 //check cors requests
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(null, true);
-        }
-    }
+	origin: function (origin, callback) {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
+			callback(null, true);
+		} else {
+			callback(null, true);
+		}
+	}
 };
 
 // ===================== main routes ==================================

@@ -20,8 +20,9 @@ module.exports.sendEmail = async (bodyValues) => {
 			html: bodyValues.email_body,
 			attachments: bodyValues.attachments
 		};
-		let promiseRespond = await transporter.sendMail(mailOptions);
 
+		let promiseRespond = await transporter.sendMail(mailOptions);
+		
 		return promiseRespond;
 	}catch(err){
 		throw err;
