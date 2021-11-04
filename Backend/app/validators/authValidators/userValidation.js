@@ -1,4 +1,4 @@
-const {userSignupValidationSchema}  = require('./userSchema');
+const {userSignupValidationSchema,userSigninValidationSchema,validateEmailSchema}  = require('./userSchema');
 
 module.exports = {
 	userSignupValidation:async(req,res,next) =>{
@@ -10,6 +10,30 @@ module.exports = {
 				showMessage: true
 			});
 		}else{
+			next();
+		}
+	},
+	validateEmailValidation: async (req, res, next) => {
+		const respond = await validateEmailSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	userSigninValidation: async (req, res, next) => {
+		const respond = await userSigninValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
 			next();
 		}
 	},

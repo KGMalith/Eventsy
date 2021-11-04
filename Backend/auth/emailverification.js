@@ -5,7 +5,7 @@ module.exports = {
 				success: false,
 				msg: 'Email not verified',
 				data: req.user.userEmail,
-				showMessage: true
+				showMessage: false
 			});
 		} else {
 			next();

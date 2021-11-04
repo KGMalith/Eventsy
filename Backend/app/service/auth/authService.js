@@ -7,7 +7,9 @@ let Speaker = require('../../schema/speakers');
 
 // Other required files
 let randomstring = require('randomstring');
-const { hashSync, genSaltSync } = require('bcrypt');
+const { hashSync, genSaltSync, compareSync } = require('bcrypt');
+let jwt = require('jsonwebtoken');
+let config = require('../../../config/config');
 
 //functions
 let sendEmail = require('../../functions/email/emailTemplates');
@@ -130,5 +132,117 @@ module.exports.userSignup = async (requestBody) => {
 	}
 };
 
+module.exports.validateEmail = async (requestBody) => {
+	//initiate session
+	const session = await mongoose.startSession();
+	//starting transaction
+	session.startTransaction();
+	try {
+		//convert code to int
+		let code = parseInt(requestBody.verification_code);
+		//get token object
+		let tokenObj = await VerificationToken.findOne({ user_email: requestBody.user_email, token: code }).session(session);
 
+		//check token is exist
+		if (!tokenObj) {
+			throw new BadRequestException('Verification token invalid or expired!');
+		}
+
+		//get user Obj
+		let userObj = await User.findOne({ email: requestBody.user_email }).session(session);
+
+		if (!userObj) {
+			throw new BadRequestException('Invalid user!');
+		}
+
+		//save user object
+		userObj.is_email_verified = true;
+		userObj.is_signup_completed = true;
+		userObj.$session(session);
+		await userObj.save();
+
+		//delete generated token
+		await VerificationToken.deleteMany({ user_email: requestBody.user_email }).session(session);
+
+		await session.commitTransaction();
+
+		return {
+			msg: 'Email validated successfully'
+		};
+
+	} catch (err) {
+		await session.abortTransaction();
+		throw err;
+	}
+	finally {
+		session.endSession();
+	}
+
+};
+
+module.exports.userSignin = async (requestBody) => {
+
+	let userEmail = requestBody.user_email;
+	let userPassword = requestBody.password;
+
+	// eslint-disable-next-line no-useless-catch
+	try {
+		//check email is exists
+		let userObject = await User.findOne({
+			email: userEmail
+		});
+
+		//check user object is exists
+		if (!userObject) {
+			throw new BadRequestException('Invalid email or password provided');
+		}
+
+		//check invited user signup completed
+		if (userObject.is_requested_user === true && userObject.is_signup_completed === false) {
+			throw new BadRequestException('Please use URL link sent to your email to complete your signup');
+		}
+
+		//check user signup completed and email verified
+		if (userObject.is_requested_user === false && userObject.is_signup_completed === false && userObject.is_email_verified === false) {
+			return{
+				signup_not_completed:true,
+				msg: 'Email not verified',
+				data: userEmail
+			};
+		}
+
+		//check password is matching
+		let passwordMatchResult = compareSync(userPassword, userObject.password);
+
+		if (!passwordMatchResult) {
+			throw new BadRequestException('Invalid email or password provided');
+		}
+
+		const tokenBody = {
+			email_verified: userObject.is_email_verified,
+			user_email: userObject.email,
+			user_role: userObject.role,
+			user_id: userObject._id
+		};
+
+		const jsonToken = jwt.sign({ result: tokenBody }, config.JWT.secret, {
+			expiresIn: '24h'
+		});
+
+		const data = {
+			user_name: userObject.first_name + ' ' + userObject.last_name,
+			user_role: userObject.role,
+			is_email_activated: userObject.is_email_verified,
+			token: jsonToken
+		};
+
+		return {
+			msg: 'User signin successfully!',
+			data: data
+		};
+
+	} catch (err) {
+		throw err;
+	}
+};
 
