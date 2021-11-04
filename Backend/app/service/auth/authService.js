@@ -311,3 +311,65 @@ module.exports.forgotPassword = async (requestBody) => {
 		session.endSession();
 	}
 };
+
+module.exports.resendToken = async (requestBody) => {
+	//initiate session
+	const session = await mongoose.startSession();
+	//starting transaction
+	session.startTransaction();
+
+	try {
+
+		let userObj = await User.findOne({ email: requestBody.user_email }).session(session);
+
+		if (!userObj) {
+			throw new BadRequestException('Invalid user email');
+		}
+
+		if (userObj.is_requested_user === true && userObj.is_signup_completed === false) {
+			throw new BadRequestException('Please use URL link sent to your email to complete your signup');
+		}
+
+		//delete existing token generated to specific user
+		await VerificationToken.deleteMany({ user_email: requestBody.user_email }).session(session);
+
+		//generate new token
+		const code = randomstring.generate({
+			length: 6,
+			charset: 'numeric'
+		});
+
+		let tokenBody = {
+			user_email: requestBody.user_email,
+			token: parseInt(code)
+		};
+
+		let newTokenObj = new VerificationToken(tokenBody);
+		newTokenObj.$session(session);
+		await newTokenObj.save();
+
+		let emailBody = {
+			user_name: userObj.first_name,
+			verification_code: code,
+			receiver: requestBody.user_email
+		};
+
+		let emailRespond = await sendEmail.reSendPasswordVerificationToken(emailBody);
+
+		if ((emailRespond.rejected).length > 0) {
+			throw new BadRequestException('Email sending error');
+		}
+
+		await session.commitTransaction();
+
+		return {
+			msg: 'Verification code resend to email'
+		};
+
+	} catch (err) {
+		await session.abortTransaction();
+		throw err;
+	} finally {
+		session.endSession();
+	}
+};

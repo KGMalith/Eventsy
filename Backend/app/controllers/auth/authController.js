@@ -38,3 +38,12 @@ module.exports.forgotPassword = async (req, res) => {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page' });
 	}
 };
+
+module.exports.resendToken = async (req, res) => {
+	try {
+		const serviceResponse = await authService.resendToken(req.body);
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
+	} catch (err) {
+		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page' });
+	}
+};

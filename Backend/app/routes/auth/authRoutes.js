@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { userSignupValidation,userSigninValidation,validateEmailValidation, forgotPasswordValidation } = require('../../validators/authValidators/userValidation');
+const { userSignupValidation,userSigninValidation,validateEmailValidation, forgotPasswordValidation, resendTokenValidation } = require('../../validators/authValidators/userValidation');
 const userController = require('../../controllers/auth/authController');
 
 router.post('/signup',
@@ -20,6 +20,11 @@ router.post('/signin',
 router.post('/forgot-password',
 	forgotPasswordValidation,
 	userController.forgotPassword
+);
+
+router.post('/resend-token',
+	resendTokenValidation,
+	userController.resendToken
 );
 
 module.exports = router;

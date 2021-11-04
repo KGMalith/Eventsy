@@ -23,6 +23,9 @@ const schema = {
 	forgotPasswordValidationSchema: Joi.object({
 		user_email: Joi.string().email().trim().required()
 	}),
+	resendTokenValidationSchema: Joi.object({
+		user_email: Joi.string().email().trim().required()
+	})
 };
 
 module.exports = schema;
