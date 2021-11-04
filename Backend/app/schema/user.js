@@ -52,6 +52,9 @@ let UserSchema = new Schema({
 			default: 0
 			// 0 => pending ,  1=> accepted , -1 => rejected 
 		}
+	},
+	user_image:{
+		type: String
 	}
 });
 
