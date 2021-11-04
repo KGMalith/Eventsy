@@ -20,6 +20,9 @@ const schema = {
 		user_email: Joi.string().email().trim().required(),
 		password: Joi.string().trim().required()
 	}),
+	forgotPasswordValidationSchema: Joi.object({
+		user_email: Joi.string().email().trim().required()
+	}),
 };
 
 module.exports = schema;
