@@ -12,6 +12,14 @@ const schema = {
 		role: Joi.number().required(),
 		file_url: Joi.string().trim().when('role', { is: (1||2), then: Joi.required(), otherwise: Joi.optional() }),
 	}),
+	validateEmailSchema: Joi.object({
+		user_email: Joi.string().email().trim().required(),
+		verification_code: Joi.number().required()
+	}),
+	userSigninValidationSchema: Joi.object({
+		user_email: Joi.string().email().trim().required(),
+		password: Joi.string().trim().required()
+	}),
 };
 
 module.exports = schema;
