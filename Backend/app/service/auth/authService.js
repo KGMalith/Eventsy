@@ -205,7 +205,7 @@ module.exports.userSignin = async (requestBody) => {
 		//check user signup completed and email verified
 		if (userObject.is_requested_user === false && userObject.is_signup_completed === false && userObject.is_email_verified === false) {
 			return{
-				signup_not_Completed:true,
+				signup_not_completed:true,
 				msg: 'Email not verified',
 				data: userEmail
 			};

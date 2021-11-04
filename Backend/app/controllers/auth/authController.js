@@ -21,7 +21,7 @@ module.exports.validateEmail = async (req, res) => {
 module.exports.userSignIn = async (req, res) => {
 	try {
 		const serviceResponse = await authService.userSignin(req.body);
-		if (serviceResponse.signup_not_Completed){
+		if (serviceResponse.signup_not_completed){
 			return res.status(355).json({ success: false, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
 		}
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
