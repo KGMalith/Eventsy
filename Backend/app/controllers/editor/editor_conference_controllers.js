@@ -1,103 +1,83 @@
-const editorPresentationService = require('../../service/editor/editor_presentation_services');
+const editorConferenceService = require('../../service/editor/editor_conference_services');
 
 
-module.exports.getEventPendingResearchPapers = async (req, res) => {
+module.exports.createConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getEventPendingResearchPapers();
-		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
-	} catch (err) {
-		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
-	}
-};
-
-module.exports.getEventPendingResearchPaper = async (req, res) => {
-	try {
-		const serviceResponse = await editorPresentationService.getEventPendingResearchPaper(req.body);
-		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
-	} catch (err) {
-		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
-	}
-};
-
-
-module.exports.createPresentation = async (req, res) => {
-	try {
-		const serviceResponse = await editorPresentationService.createPresentation(req.user, req.body);
+		const serviceResponse = await editorConferenceService.createConference(req.user, req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-
-module.exports.editPresentation = async (req, res) => {
+module.exports.editConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.editPresentation(req.user, req.body);
+		const serviceResponse = await editorConferenceService.editConference(req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.editTempPresentation = async (req, res) => {
+
+module.exports.editTempConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.editTempPresentation(req.body);
+		const serviceResponse = await editorConferenceService.editTempConference(req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.getAllPresentations = async (req, res) => {
+module.exports.getAllConferences = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getAllPresentations();
+		const serviceResponse = await editorConferenceService.getAllConferences();
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.getAllTempPresentations = async (req, res) => {
+module.exports.getAllTempConferences = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getAllTempPresentations();
+		const serviceResponse = await editorConferenceService.getAllTempConferences();
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.getSingleTempPresentation = async (req, res) => {
+module.exports.getSingleTempConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getSingleTempPresentation(req.body);
+		const serviceResponse = await editorConferenceService.getSingleTempConference(req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.getSinglePresentation = async (req, res) => {
+module.exports.getSingleConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getSinglePresentation(req.body);
+		const serviceResponse = await editorConferenceService.getSingleConference(req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
-
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}
 };
 
-module.exports.getPresentationList = async (req, res) => {
+module.exports.getSingleConferenceForPreview = async (req, res) => {
 	try {
-		const serviceResponse = await editorPresentationService.getPresentationList(req.body);
+		const serviceResponse = await editorConferenceService.getSingleConferenceForPreview(req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
+	} catch (err) {
+		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
+	}
+};
 
+module.exports.getSingleTempConferenceForPreview = async (req, res) => {
+	try {
+		const serviceResponse = await editorConferenceService.getSingleTempConferenceForPreview(req.body);
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
 	}

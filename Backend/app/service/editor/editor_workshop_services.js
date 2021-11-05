@@ -459,3 +459,30 @@ module.exports.getWorkshop = async (requestBody) => {
 		throw err;
 	}
 };
+
+module.exports.getWorkshopsList = async () => {
+	// eslint-disable-next-line no-useless-catch
+	try {
+		let workshop_data = [];
+
+		let workshopList = await Workshop.find({}, '_id workshop_name');
+
+		if (workshopList.length > 0) {
+			for (let index = 0; index < workshopList.length; index++) {
+				let data = {
+					value: workshopList[index]._id,
+					label: workshopList[index].workshop_name
+				};
+				workshop_data.push(data);
+			}
+		}
+
+		return {
+			msg: 'All workshops generated',
+			data: workshop_data
+		};
+
+	} catch (err) {
+		throw err;
+	}
+};

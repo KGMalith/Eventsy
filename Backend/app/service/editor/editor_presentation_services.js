@@ -371,3 +371,29 @@ module.exports.getSinglePresentation = async (requestBody) => {
 		throw err;
 	}
 };
+
+module.exports.getPresentationList = async () => {
+	// eslint-disable-next-line no-useless-catch
+	try {
+		let presentation_data = [];
+		let presentationList = await ReserchPaperPresentation.find({}, '_id presentation_topic');
+
+		if (presentationList.length > 0) {
+			for (let index = 0; index < presentationList.length; index++) {
+				let data = {
+					value: presentationList[index]._id,
+					label: presentationList[index].presentation_topic
+				};
+				presentation_data.push(data);
+			}
+		}
+
+		return {
+			msg: 'All presentations generated',
+			data: presentation_data
+		};
+
+	} catch (err) {
+		throw err;
+	}
+};
