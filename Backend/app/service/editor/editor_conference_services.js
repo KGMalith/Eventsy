@@ -146,10 +146,6 @@ module.exports.createConference = async (requestUser, requestBody) => {
 				phone_number: requestBody.contact_number,
 				email: requestBody.contact_email
 			},
-			seat_capacity: {
-				attendee_seat_capacity: requestBody.attendee_seat_capacity,
-				researcher_seat_capacity: requestBody.researcher_seat_capacity
-			},
 			key_note_speakers: requestBody.key_note_speakers,
 			conference_workshops: requestBody.conference_workshops,
 			conference_reserch_paper_presentations: requestBody.conference_reserch_paper_presentations,
@@ -335,10 +331,6 @@ module.exports.editConference = async (requestUser, requestBody) => {
 				phone_number: requestBody.contact_number,
 				email: requestBody.contact_email
 			},
-			seat_capacity: {
-				attendee_seat_capacity: requestBody.attendee_seat_capacity,
-				researcher_seat_capacity: requestBody.researcher_seat_capacity
-			},
 			key_note_speakers: requestBody.key_note_speakers,
 			conference_workshops: requestBody.conference_workshops,
 			conference_reserch_paper_presentations: requestBody.conference_reserch_paper_presentations,
@@ -512,8 +504,6 @@ module.exports.editTempConference = async (requestBody) => {
 		conferenceObj.contact_details.address = requestBody.contact_address;
 		conferenceObj.contact_details.phone_number = requestBody.contact_number;
 		conferenceObj.contact_details.email = requestBody.contact_email;
-		conferenceObj.seat_capacity.attendee_seat_capacity = requestBody.attendee_seat_capacity;
-		conferenceObj.seat_capacity.researcher_seat_capacity = requestBody.researcher_seat_capacity;
 		conferenceObj.key_note_speakers = requestBody.key_note_speakers,
 		conferenceObj.conference_workshops = requestBody.conference_workshops;
 		conferenceObj.conference_reserch_paper_presentations = requestBody.conference_reserch_paper_presentations;
@@ -661,7 +651,6 @@ module.exports.getSingleTempConference = async (requestBody) => {
 			contact_details: conference.contact_details,
 			key_note_speakers: speaker_data,
 			registration_fees: conference.registration_fees,
-			seat_capacity: conference.seat_capacity,
 			conference_id: conference._id
 		};
 
@@ -730,7 +719,6 @@ module.exports.getSingleConference = async (requestBody) => {
 			contact_details: conference.contact_details,
 			key_note_speakers: speaker_data,
 			registration_fees: conference.registration_fees,
-			seat_capacity: conference.seat_capacity,
 			conference_id: conference._id
 		};
 

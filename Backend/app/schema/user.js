@@ -46,6 +46,10 @@ let UserSchema = new Schema({
 		type:Boolean,
 		default:false
 	},
+	is_payment_completed:{
+		type: Boolean,
+		default: false
+	},
 	event_details:{
 		media_file_details: {
 			media_file: {
