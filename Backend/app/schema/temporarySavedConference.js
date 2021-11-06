@@ -64,20 +64,6 @@ let TemporarySavedConference = new Schema({
 			type: String
 		}
 	},
-	seat_capacity: {
-		attendee_seat_capacity: {
-			type: Number
-		},
-		current_filled_attendee_seat_capacity: {
-			type: Number
-		},
-		researcher_seat_capacity: {
-			type: Number
-		},
-		current_filled_researcher_seat_capacity: {
-			type: Number
-		}
-	},
 	key_note_speakers: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Speaker'

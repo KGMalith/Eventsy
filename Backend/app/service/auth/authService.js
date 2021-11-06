@@ -5,6 +5,7 @@ let User = require('../../schema/user');
 let VerificationToken = require('../../schema/verificationTokenSchema');
 let Speaker = require('../../schema/speakers');
 let Notification = require('../../schema/notification');
+let Conference = require('../../schema/conference');
 
 // Other required files
 let randomstring = require('randomstring');
@@ -44,6 +45,12 @@ module.exports.userSignup = async (requestBody) => {
 		//check user roles are within  atendees, reserchers and workshop conductors otherwise send error
 		if (requestBody.role !== 0 && requestBody.role !== 1 && requestBody.role !== 2) {
 			throw new UnauthorizedException();
+		}
+
+		let ConferenceList = await Conference.find({}).session(session);
+
+		if (ConferenceList.length <= 0){
+			throw new BadRequestException('Conference currently unavailable. Please signup once conference available');
 		}
 
 		//Encrypt password
