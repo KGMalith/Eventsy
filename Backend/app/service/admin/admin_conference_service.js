@@ -301,7 +301,7 @@ module.exports.approveConference = async (requestUser, requestBody) => {
 		await session.commitTransaction();
 
 		return {
-			msg: 'Requested conference approved'
+			msg: `Requested conference "${conference_name}" approved`
 		};
 
 	} catch (err) {
@@ -334,7 +334,7 @@ module.exports.rejectConference = async (requestUser, requestBody) => {
 		let notificationArray = [];
 		let notify = {
 			created_by: requestUser.userID,
-			message: 'Requested conference rejected'
+			message: `Requested conference "${conference_name}" rejected`
 		};
 		notificationArray.push(notify);
 

@@ -17,5 +17,9 @@ module.exports = {
 	},
 	Uploads:{
 		UPLOAD_BASE_URL: process.env.UPLOAD_BASE_URL
+	},
+	Frontend:{
+		FRONTEND_BASE_URL:process.env.FRONTEND_BASE_URL,
+		USER_INVITATION_URL_PATH: process.env.USER_INVITATION_URL_PATH
 	}
 };

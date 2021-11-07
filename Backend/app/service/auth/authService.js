@@ -147,6 +147,79 @@ module.exports.userSignup = async (requestBody) => {
 	}
 };
 
+module.exports.invitedUserSignUp = async (requestBody) => {
+
+	let password = requestBody.password;
+
+	//initiate session
+	const session = await mongoose.startSession();
+	//Start trasaction
+	session.startTransaction();
+
+	try {
+
+		let UserObj = await User.findById(requestBody.user_id).session(session);
+
+		if (!UserObj){
+			throw new BadRequestException('Invalid URL request');
+		}
+
+		if (UserObj.is_requested_user && UserObj.is_signup_completed){
+			throw new BadRequestException('User alredy signup successfully');
+		}
+
+		//Encrypt password
+		let salt = genSaltSync(10);
+		let encrypted_password = hashSync(password, salt);
+
+		//update user Object and assign values
+		UserObj.password = encrypted_password;
+		UserObj.is_signup_completed = true;
+		UserObj.is_email_verified = true;
+		UserObj.$session(session);
+		await UserObj.save();
+
+		//commit the transaction 
+		await session.commitTransaction();
+		return {
+			msg: 'Signup completed.'
+		};
+
+	} catch (err) {
+		await session.abortTransaction();
+		throw err;
+	} finally {
+		session.endSession();
+	}
+};
+
+module.exports.invitedUserValidate = async (requestBody) => {
+	// eslint-disable-next-line no-useless-catch
+	try {
+		
+		let UserObj = await User.findById(requestBody.user_id);
+
+		if (!UserObj) {
+			throw new BadRequestException('Invalid URL request');
+		}
+
+		if (!(UserObj.is_requested_user)) {
+			throw new BadRequestException('Invalid URL request');
+		}
+
+		if (UserObj.is_signup_completed){
+			throw new BadRequestException('User alredy signup successfully');
+		}
+
+		return {
+			msg: 'URL validated',
+		};
+
+	} catch (err) {
+		throw err;
+	}
+};
+
 module.exports.validateEmail = async (requestBody) => {
 	//initiate session
 	const session = await mongoose.startSession();
