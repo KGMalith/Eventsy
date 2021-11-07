@@ -79,10 +79,6 @@ let ConferenceSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'ReserchPaperPresentation'
 	}],
-	is_conference_active:{
-		type:Boolean,
-		default:false
-	}
 	
 });
 
