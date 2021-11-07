@@ -12,7 +12,7 @@ module.exports.createConference = async (req, res) => {
 
 module.exports.editConference = async (req, res) => {
 	try {
-		const serviceResponse = await editorConferenceService.editConference(req.body);
+		const serviceResponse = await editorConferenceService.editConference(req.user,req.body);
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });

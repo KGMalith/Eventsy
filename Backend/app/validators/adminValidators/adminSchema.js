@@ -16,6 +16,15 @@ const schema = {
 	deleteConfereceValidationSchema: Joi.object({
 		conference_id: Joi.string().trim().required(),
 	}),
+	getSingleTempSpeakerValidationSchema: Joi.object({
+		speaker_id: Joi.string().trim().required(),
+	}),
+	approveSpeakerValidationSchema: Joi.object({
+		speaker_id: Joi.string().trim().required(),
+	}),
+	rejectSpeakerValidationSchema: Joi.object({
+		speaker_id: Joi.string().trim().required(),
+	}),
 };
 
 module.exports = schema;

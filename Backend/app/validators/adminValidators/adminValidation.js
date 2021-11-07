@@ -3,7 +3,10 @@ const {
 	getSingleConferenceValidationSchema,
 	approveConferenceValidationSchema,
 	rejectConferenceValidationSchema,
-	deleteConfereceValidationSchema
+	deleteConfereceValidationSchema,
+	getSingleTempSpeakerValidationSchema,
+	rejectSpeakerValidationSchema,
+	approveSpeakerValidationSchema
 } = require('./adminSchema');
 
 
@@ -58,6 +61,42 @@ module.exports = {
 	},
 	deleteConferenceValidation: async (req, res, next) => {
 		const respond = await deleteConfereceValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	getTempSpeakerValidation: async (req, res, next) => {
+		const respond = await getSingleTempSpeakerValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	approveSpeakerValidation: async (req, res, next) => {
+		const respond = await approveSpeakerValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	rejectSpeakerValidation: async (req, res, next) => {
+		const respond = await rejectSpeakerValidationSchema.validate(req.body);
 		if (respond.error) {
 			res.status(500).json({
 				success: false,
