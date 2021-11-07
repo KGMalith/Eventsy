@@ -25,6 +25,15 @@ const schema = {
 	rejectSpeakerValidationSchema: Joi.object({
 		speaker_id: Joi.string().trim().required(),
 	}),
+	getSingleTempWorkshopValidationSchema: Joi.object({
+		workshop_id: Joi.string().trim().required(),
+	}),
+	approveWorkshopValidationSchema: Joi.object({
+		workshop_id: Joi.string().trim().required(),
+	}),
+	rejectWorkshopValidationSchema: Joi.object({
+		workshop_id: Joi.string().trim().required(),
+	}),
 };
 
 module.exports = schema;

@@ -183,7 +183,7 @@ module.exports.rejectRequestedSpeaker = async (requestUser, requestBody) => {
 
 		let speaker_name = speakerObj.speaker_title + ' ' + speakerObj.speaker_title + ' ' + speakerObj.speaker_title;
 
-		//delete temporary conference object
+		//delete temporary speaker object
 		await speakerObj.remove();
 
 		let notificationArray = [];
