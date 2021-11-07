@@ -1,10 +1,20 @@
 const router = require('express').Router();
-const { userSignupValidation,userSigninValidation,validateEmailValidation, forgotPasswordValidation, resendTokenValidation, resetPasswordValidation } = require('../../validators/authValidators/userValidation');
+const { userSignupValidation, userSigninValidation, validateEmailValidation, forgotPasswordValidation, resendTokenValidation, resetPasswordValidation, invitedUserSignupValidation, invitedUserValidation } = require('../../validators/authValidators/userValidation');
 const userController = require('../../controllers/auth/authController');
 
 router.post('/signup',
 	userSignupValidation,
 	userController.userSignUp
+);
+
+router.post('/invited-user-signup',
+	invitedUserSignupValidation,
+	userController.invitedUserSignUp
+);
+
+router.get('/invited-user-validate',
+	invitedUserValidation,
+	userController.invitedUserValidate
 );
 
 router.post('/validate-email',

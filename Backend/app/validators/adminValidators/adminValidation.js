@@ -9,7 +9,12 @@ const {
 	approveSpeakerValidationSchema,
 	rejectWorkshopValidationSchema,
 	approveWorkshopValidationSchema,
-	getSingleTempWorkshopValidationSchema
+	getSingleTempWorkshopValidationSchema,
+	rejectPresentationValidationSchema,
+	approvePresentationValidationSchema,
+	getSingleTempPresentationValidationSchema,
+	addNewUsersValidationSchema,
+	viewUsersValidationSchema
 } = require('./adminSchema');
 
 
@@ -136,6 +141,66 @@ module.exports = {
 	},
 	rejectWorkshopValidation: async (req, res, next) => {
 		const respond = await rejectWorkshopValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	getTempPresentationValidation: async (req, res, next) => {
+		const respond = await getSingleTempPresentationValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	approvePresentationValidation: async (req, res, next) => {
+		const respond = await approvePresentationValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	rejectPresentationValidation: async (req, res, next) => {
+		const respond = await rejectPresentationValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	addNewUsersValidation: async (req, res, next) => {
+		const respond = await addNewUsersValidationSchema.validate(req.body);
+		if (respond.error) {
+			res.status(500).json({
+				success: false,
+				msg: respond.error.details[0].message,
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
+	viewUsersValidation: async (req, res, next) => {
+		const respond = await viewUsersValidationSchema.validate(req.body);
 		if (respond.error) {
 			res.status(500).json({
 				success: false,

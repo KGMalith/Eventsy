@@ -14,7 +14,11 @@ let ReserchPaperPresentationSchema = new Schema({
 	}, 
 	presentation_date_and_time: {
 		type: Date
-	}
+	},
+	changes_approved_by_admin: {
+		type: Boolean,
+		default: false
+	},
 });
 
 module.exports = mongoose.model('ReserchPaperPresentation', ReserchPaperPresentationSchema);

@@ -155,3 +155,29 @@ module.exports.paymentUnSuccessMessage = async (values) => {
 
 	return promiseRespond;
 };
+
+module.exports.sendUserInvitation = async (values) => {
+	let emailBody = `
+            <img src="cid:companyLogo"/>
+            <h1>User Invitation</h1>
+            <p>Hello, ${values.user_name},</p>
+            <p>You have been invited to join Eventsy as <b>:${values.user_role}</b></p>
+			<a href="${values.invitation_link}" style="background-color:#2D7AC0; border:1px solid #2D7AC0; border-color:#2D7AC0; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block; font-size:21px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:8px 18px 8px 18px; text-align:center; text-decoration:none; border-style:solid;" target="_blank">ACCEPT INVITATION</a>
+        `;
+	let attachments = [{
+		filename: 'logo.png',
+		path: './uploads/logo.png',
+		cid: 'companyLogo'
+	}];
+
+	let data = {
+		receiver_email: values.receiver,
+		email_subject: 'User Invitation',
+		email_body: emailBody,
+		attachments: attachments
+	};
+
+	let promiseRespond = await sendEmail.sendEmail(data);
+
+	return promiseRespond;
+};

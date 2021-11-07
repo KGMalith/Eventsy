@@ -9,6 +9,24 @@ module.exports.userSignUp = async (req, res) => {
 	}
 };
 
+module.exports.invitedUserSignUp = async (req, res) => {
+	try {
+		const serviceResponse = await authService.invitedUserSignUp(req.body);
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: false });
+	} catch (err) {
+		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page' });
+	}
+};
+
+module.exports.invitedUserValidate = async (req, res) => {
+	try {
+		const serviceResponse = await authService.invitedUserValidate(req.body);
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: false });
+	} catch (err) {
+		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page' });
+	}
+};
+
 module.exports.validateEmail = async (req, res) => {
 	try {
 		const serviceResponse = await authService.validateEmail(req.body);
