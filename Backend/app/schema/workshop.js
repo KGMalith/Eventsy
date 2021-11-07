@@ -15,6 +15,10 @@ let WorkshopSchema = new Schema({
 	workshop_date_and_time:{
 		type:Date
 	},
+	requested_user:{
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	changes_approved_by_admin: {
 		type: Boolean,
 		default: false

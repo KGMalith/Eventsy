@@ -112,6 +112,7 @@ module.exports.createWorkShop = async (requestUser, requestBody) => {
 			workshop_description: requestBody.workshop_description,
 			workshop_speakers: requestBody.speakers_id_list,
 			workshop_date_and_time: requestBody.workshop_date_and_time,
+			requested_user: requestBody.workshop_conductor_id,
 			isNewRequest: true
 		};
 
@@ -173,9 +174,9 @@ module.exports.editWorkShop = async (requestUser, requestBody) => {
 	try {
 
 		//check workshop exists
-		let isWorkshopExists = await Workshop.findById(requestBody.workshop_id).session(session);
+		let workshop_object = await Workshop.findById(requestBody.workshop_id).session(session);
 
-		if (!isWorkshopExists) {
+		if (!workshop_object) {
 			throw new BadRequestException('Invalid workshop id');
 		}
 
@@ -206,6 +207,7 @@ module.exports.editWorkShop = async (requestUser, requestBody) => {
 			workshop_description: requestBody.workshop_description,
 			workshop_speakers: requestBody.speakers_id_list,
 			workshop_date_and_time: requestBody.workshop_date_and_time,
+			requested_user: workshop_object.requested_user,
 			matching_workshop_id: requestBody.workshop_id
 		};
 

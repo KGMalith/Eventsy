@@ -65,6 +65,21 @@ let UserSchema = new Schema({
 			type: Boolean,
 			default: false
 		}
+	},
+	billing_contact_details:{
+		is_billing_contact_details_completed: {
+			type: Boolean,
+			default: false
+		},
+		address:{
+			type: String
+		},
+		city:{
+			type: String
+		},
+		country:{
+			type: String
+		}
 	}
 	
 });

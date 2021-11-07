@@ -19,6 +19,10 @@ let TemporaryWorkshopSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	requested_user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	matching_workshop_id: {
 		type: Schema.Types.ObjectId,
 		ref: 'Workshop'
