@@ -100,6 +100,7 @@ module.exports.approveRequestedWorkshop = async (requestUser, requestBody) => {
 				workshop_description: tempWorkshop.workshop_description,
 				workshop_speakers: tempWorkshop.workshop_speakers,
 				workshop_date_and_time: tempWorkshop.workshop_date_and_time,
+				requested_user: tempWorkshop.requested_user,
 				changes_approved_by_admin: true
 			};
 
@@ -119,6 +120,7 @@ module.exports.approveRequestedWorkshop = async (requestUser, requestBody) => {
 			workshopObj.workshop_description = tempWorkshop.workshop_description;
 			workshopObj.workshop_speakers = tempWorkshop.workshop_speakers;
 			workshopObj.workshop_date_and_time = tempWorkshop.workshop_date_and_time;
+			workshopObj.requested_user = tempWorkshop.requested_user;
 			workshopObj.changes_approved_by_admin = true;
 
 			workshopObj.$session(session);

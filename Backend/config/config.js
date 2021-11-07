@@ -21,5 +21,14 @@ module.exports = {
 	Frontend:{
 		FRONTEND_BASE_URL:process.env.FRONTEND_BASE_URL,
 		USER_INVITATION_URL_PATH: process.env.USER_INVITATION_URL_PATH
-	}
+	},
+	Payhere:{
+		MERCHANT_ID: process.env.MERCHANT_ID,
+		CURRENCY_CODE: process.env.CURRENCY_CODE,
+		PAYHERE_SECRET: process.env.PAYHERE_SECRET
+	},
+	Backend: {
+		BACKEND_BASE_URL: process.env.BACKEND_BASE_URL,
+		PAYMENT_NOTIFICATION_URL_PATH: process.env.PAYMENT_NOTIFICATION_URL_PATH
+	},
 };

@@ -65,4 +65,15 @@ module.exports = {
 			next();
 		}
 	},
+	paymentRoleValidation: (req, res, next) => {
+		if (req.user.userRole !== 1 && req.user.userRole !== 2 && req.user.userRole !== 3) {
+			res.status(401).json({
+				success: false,
+				msg: 'Unauthorized action',
+				showMessage: true
+			});
+		} else {
+			next();
+		}
+	},
 };
