@@ -21,18 +21,22 @@ module.exports.initPayment = async (requestUser) => {
 
 		let conferenceObj = await Conference.find({});
 
+		//check conference available
 		if ((conferenceObj.length) <= 0) {
 			throw new UnauthorizedException();
 		}
 
-		if (!(UserObj.event_details.is_event_created)) {
+		//if user role resercher or workshp conductor check their requested event created
+		if ((requestUser.userRole === 1 || requestUser.userRole === 2) && !(UserObj.event_details.is_event_created)) {
 			throw new UnauthorizedException();
 		}
 
+		//check payment already completed
 		if (UserObj.is_payment_completed) {
 			throw new BadRequestException('Payment already completed');
 		}
 
+		//check billing details submitted
 		if (!(UserObj.billing_contact_details.is_billing_contact_details_completed)){
 			throw new BadRequestException('Billing contact details not submitted');
 		}
@@ -64,24 +68,33 @@ module.exports.initPayment = async (requestUser) => {
 		let user_id = UserObj._id;
 		let payment_amount = UserObj.role === 0 ? conferenceObj.registration_fees.attendee_registration_fee : UserObj.role === 1 ? conferenceObj.registration_fees.researcher_registration_fee : UserObj.role === 2 ? conferenceObj.registration_fees.workshop_conductor_registration_fee : null;
 
-		let hash_code = (md5(config.Payhere.MERCHANT_ID + user_id + (Number(payment_amount)).toFixed(2) + config.Payhere.CURRENCY_CODE + (md5(config.Payhere.PAYHERE_SECRET)).toUpperCase())).toUpperCase();
+		if (payment_amount === 0){
+			//update user
+			await User.findByIdAndUpdate(requestUser.userID, { is_payment_completed:true});
 
-		let data_object = {
-			sandbox: true,
-			merchant_id: config.Payhere.MERCHANT_ID,
-			order_id: user_id,
-			hash: hash_code,
-			billing_contact_details: UserObj.billing_contact_details,
-			email: UserObj.email,
-			notify_url:config.Backend.BACKEND_BASE_URL+config.Backend.PAYMENT_NOTIFICATION_URL_PATH,
-			amount: (Number(payment_amount)).toFixed(2),
-			currency: config.Payhere.CURRENCY_CODE
-		};
+			return {
+				msg: 'payment completed'
+			};
+		}else{
+			let hash_code = (md5(config.Payhere.MERCHANT_ID + user_id + (Number(payment_amount)).toFixed(2) + config.Payhere.CURRENCY_CODE + (md5(config.Payhere.PAYHERE_SECRET)).toUpperCase())).toUpperCase();
 
-		return {
-			msg: 'payment initiated',
-			data: data_object
-		};
+			let data_object = {
+				sandbox: true,
+				merchant_id: config.Payhere.MERCHANT_ID,
+				order_id: user_id,
+				hash: hash_code,
+				billing_contact_details: UserObj.billing_contact_details,
+				email: UserObj.email,
+				notify_url: config.Backend.BACKEND_BASE_URL + config.Backend.PAYMENT_NOTIFICATION_URL_PATH,
+				amount: (Number(payment_amount)).toFixed(2),
+				currency: config.Payhere.CURRENCY_CODE
+			};
+
+			return {
+				msg: 'payment initiated',
+				data: data_object
+			};
+		}
 
 	} catch (err) {
 		throw err;
