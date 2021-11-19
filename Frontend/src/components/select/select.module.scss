@@ -1,0 +1,59 @@
+.defaultLabel {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-medium-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: var(--app-primary-font-color);
+}
+
+.defaultDropDown {
+  border: 1px solid var(--app-primary-border-color);
+  padding: 0px 15px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-weight);
+  font-size: var(--app-regular-font-size);
+  color: var(--app-tertiary-font-color);
+  height: 45px;
+  &:hover {
+    border: 1px solid var(--app-secondary-border-color) !important;
+  }
+  &:focus {
+    border: 1px solid var(--app-secondary-border-color) !important;
+  }
+  &:active {
+    border: 1px solid var(--app-secondary-border-color) !important;
+  }
+}
+
+.primaryLabel {
+  font-family: var(--app-tertiary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-secondary-font-size);
+  color: var(--app-primary-font-color);
+}
+
+.primaryDropDown {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  color: #768192;
+  background-color: #fff;
+  border: 1px solid var(--app-primary-border-color);
+  border-radius: 0.25rem;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.errorMessage {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
