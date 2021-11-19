@@ -17,7 +17,7 @@ let config = require('../../../config/config');
 let sendEmail = require('../../functions/email/emailTemplates');
 
 // Error Class files
-const BadRequestException = require('./../../util/exceptions/badRequestException');
+const BadRequestException = require('../../util/exceptions/badRequestException');
 const UnauthorizedException = require('../../util/exceptions/unautherizedException');
 
 module.exports.userSignup = async (requestBody) => {

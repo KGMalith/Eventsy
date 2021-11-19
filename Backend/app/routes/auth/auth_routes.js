@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { userSignupValidation, userSigninValidation, validateEmailValidation, forgotPasswordValidation, resendTokenValidation, resetPasswordValidation, invitedUserSignupValidation, invitedUserValidation } = require('../../validators/authValidators/userValidation');
-const userController = require('../../controllers/auth/authController');
+const userController = require('../../controllers/auth/auth_controller');
 
 router.post('/signup',
 	userSignupValidation,

@@ -19,13 +19,13 @@ module.exports.getResearchPresentationDetails = async (requestUser) => {
 			throw new UnauthorizedException();
 		}
 
-		let conferenceObj = await Conference.find({});
+		let conferenceObjList = await Conference.find({});
 
-		if ((conferenceObj.length) <= 0) {
+		if ((conferenceObjList.length) <= 0) {
 			throw new UnauthorizedException();
 		}
 
-		let payment_amount = UserObj.role === 0 ? conferenceObj.registration_fees.attendee_registration_fee : UserObj.role === 1 ? conferenceObj.registration_fees.researcher_registration_fee : UserObj.role === 2 ? conferenceObj.registration_fees.workshop_conductor_registration_fee : null;
+		let payment_amount = conferenceObjList[0].registration_fees.researcher_registration_fee;
 
 		if (UserObj.event_details.is_event_created) {
 
