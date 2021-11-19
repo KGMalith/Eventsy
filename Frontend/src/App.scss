@@ -1,0 +1,50 @@
+@import './styles/colors.scss';
+@import './styles/fonts.scss';
+
+*{
+  text-decoration: none !important;
+  list-style-type: none !important;
+}
+
+/* ======================== Section Header Start ======================== */
+
+.section-header {
+  margin-bottom: 60px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 5px;
+  background: #f82249;
+  bottom: 0;
+  left: calc(50% - 25px);
+}
+
+.section-header h2 {
+  font-size: var(--app-large-font-size);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: var(--app-bold-font-weight);
+  margin-bottom: 10px;
+  color: var(--app-primary-font-color);
+}
+
+.section-header p {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: var(--app-medium-secondary-font-size);
+  font-weight: var(--app-medium-font-weight);
+  color: #9195a2;
+}
+
+.section-with-bg {
+  background-color: #f6f7fd;
+}
+
+/* ======================== Section Header End ======================== */
