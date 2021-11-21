@@ -22,7 +22,6 @@ const errorHandler = (error) => {
         return error.data
 
     } else if (error.status === 355) {
-        localStorage.setItem('email', error.data.data);
         toast.error(<div><i className="fa fa-exclamation-triangle fa-lg"></i>&nbsp;&nbsp;{error.data.msg}</div>, {
             position: "top-right",
             autoClose: 2500,
@@ -34,7 +33,10 @@ const errorHandler = (error) => {
         });
 
         setTimeout(function () {
-            history.push('/email-verify');
+            history.push({
+                pathname: '/email-verify',
+                search: `?email=${error.data.data}`
+            });
             window.location.reload();
         }, 1300);
 

@@ -1,0 +1,120 @@
+.message {
+  color: #757575;
+  margin-bottom: 0px !important;
+}
+
+.dropdownNumber {
+  border-radius: 0px !important;
+  width: 50px;
+}
+
+.inputboxNumber {
+  border: 1px solid var(--app-primary-border-color);
+  padding: 0px 60px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-weight);
+  font-size: var(--app-regular-font-size);
+  color: var(--app-tertiary-font-color);
+  height: 45px !important;
+  width: 100% !important;
+}
+
+.inputboxNumber:hover {
+  border: 1px solid var(--app-secondary-border-color) !important;
+}
+
+.inputboxNumber:focus {
+  border: 1px solid var(--app-secondary-border-color) !important;
+}
+
+.inputboxNumber:active {
+  border: 1px solid var(--app-secondary-border-color) !important;
+}
+
+.inputboxNumberError {
+  border: 1px solid var(--app-secondary-border-color) !important;
+  padding: 0px 60px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-weight);
+  font-size: var(--app-regular-font-size);
+  color: var(--app-tertiary-font-color);
+  height: 45px !important;
+  width: 100% !important;
+}
+
+.formLabel {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-medium-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: var(--app-primary-font-color);
+  margin-bottom: 0.5rem !important;
+}
+
+.radioBtns label {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-regular-secondary-font-size);
+  cursor: pointer;
+}
+
+.radioBtns input {
+  cursor: pointer;
+}
+
+.radioBtns input:checked {
+  background-color: var(--app-buttons-primary-color) !important;
+  border-color: var(--app-buttons-primary-color) !important;
+  box-shadow: none !important;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: #42461f;
+  font-weight: var(--app-medium-font-weight);
+}
+
+.signup-link:hover {
+  color: var(--app-link-hover-color);
+}
+
+.signup-link:active {
+  color: var(--app-link-hover-color);
+}
+
+.numberErrorMsg {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.successAlert {
+  border-left: 4px solid #27ae60;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  color: #333 !important;
+  padding: 0.5rem 1rem !important;
+  margin-top: 10px;
+  font-family: var(--app-secondary-font);
+  font-size: var(--app-regular-font-size);
+  .deleteIcon {
+    display: none;
+  }
+  &:hover {
+    .deleteIcon {
+      display: block;
+    }
+  }
+}
+
+.deleteIcon {
+  text-align: right;
+  i{
+      cursor: pointer;
+  }
+}

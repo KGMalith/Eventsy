@@ -1,0 +1,37 @@
+.verifyEmail {
+  padding: 120px 0 120px 0;
+}
+
+.formmain {
+  box-shadow: 0px 0px 15px #0000001a;
+  padding: 50px;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+.title h4 {
+  font-size: 17px;
+  font-weight: var(--app-medium-font-weight);
+  margin-bottom: 15px;
+  color: #f82249;
+}
+
+.title h3 {
+  font-family: var(--app-primary-font);
+  font-size: 25px;
+  text-transform: capitalize;
+  font-weight: var(--app-semi-bold-weight);
+}
+
+.verificationcodeText{
+  margin-bottom: 0px;
+  font-size: var( --app-regular-font-size);
+}
+
+.resendText{
+  font-weight: var(--app-semi-bold-weight);
+  color: var( --app-link-color);
+  cursor: pointer;
+}

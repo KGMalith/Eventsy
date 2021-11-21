@@ -34,11 +34,58 @@ export let signUp = async (dataSet) => {
             first_name: dataSet.firstName,
             last_name: dataSet.lastName,
             affliation: dataSet.affiliation && dataSet.affiliation,
-            role: dataSet.userType
+            role: dataSet.userType,
+            file_url: dataSet.file_url
         })
         return value;
     } catch (error) {
         return error;
+    }
+}
+
+//upload research paper pdf
+export let uploadResearchPaperFile = async (fileData, setPrecentage) => {
+    let formData = new FormData();
+    formData.append('file', fileData);
+    try {
+        let value = await axiosInstance.post(BASE_URL + '/upload-research-paper', formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                onUploadProgress: progressEvent => {
+                    let value = parseInt(Math.round(progressEvent.loaded * 100) / progressEvent.total);
+                    setPrecentage({ uploadPrecentage: value });
+
+                    setTimeout(() => setPrecentage({ uploadPrecentage: 0 }), 1500);
+                },
+            });
+        return value;
+    } catch (error) {
+        return error
+    }
+}
+
+//upload research paper pdf
+export let uploadWorkshopProposalFile = async (fileData, setPrecentage) => {
+    let formData = new FormData();
+    formData.append('file', fileData);
+    try {
+        let value = await axiosInstance.post(BASE_URL + '/upload-workshop-proposal', formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                onUploadProgress: progressEvent => {
+                    let value = parseInt(Math.round(progressEvent.loaded * 100) / progressEvent.total);
+                    setPrecentage({ uploadPrecentageConference: value });
+
+                    setTimeout(() => setPrecentage({ uploadPrecentageConference: 0 }), 1500);
+                },
+            });
+        return value;
+    } catch (error) {
+        return error
     }
 }
 

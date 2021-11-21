@@ -1,0 +1,12 @@
+.loading-box {
+  display: grid;
+  height: 100vh;
+  background: #f6f7fd;
+  overflow: hidden;
+}
+
+.loaderContainer {
+  position: relative;
+  margin-top: 0%;
+  transform: translate(0%, 30%);
+}

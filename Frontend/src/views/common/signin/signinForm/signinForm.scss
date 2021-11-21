@@ -1,0 +1,38 @@
+.forgot-Password-Col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.forgot-Password-Col a {
+  text-decoration: none;
+  color: #424646;
+  font-weight: var(--app-medium-font-weight);
+}
+
+.forgot-Password-Col a:hover {
+  color: var(--app-link-hover-color);
+}
+
+.forgot-Password-Col a:active {
+  color: var(--app-link-hover-color);
+}
+
+.message {
+  color: #757575;
+  margin-bottom: 0px !important;
+}
+
+.signup-link {
+  text-decoration: none;
+  color: #42461f;
+  font-weight: var(--app-medium-font-weight);
+}
+
+.signup-link:hover {
+  color: var(--app-link-hover-color);
+}
+
+.signup-link:active {
+  color: var(--app-link-hover-color);
+}

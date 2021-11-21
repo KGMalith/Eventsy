@@ -1,0 +1,56 @@
+/* ====================== About start ============================= */
+
+#about {
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  color: var(--app-secondary-font-color);
+  padding: 80px 0 40px 0;
+}
+
+.about-container{
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  #about {
+    background-attachment: fixed;
+  }
+}
+
+#about h2 {
+  font-family: var(--app-secondary-font);
+  font-size: var(--app-large-font-size);
+  font-weight: var(--app-bold-font-weight);
+  margin-bottom: 10px;
+  color: var(--app-secondary-font-color);
+  z-index: 2;
+}
+
+#about h3 {
+  font-family: var(--app-secondary-font);
+  font-size: var(--app-medium-secondary-font-size);
+  font-weight: var(--app-bold-font-weight);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--app-secondary-font-color);
+}
+
+#about p {
+  font-family: var(--app-primary-font);
+  font-size: var(--app-regular-font-size);
+  margin-bottom: 20px;
+  color: var(--app-secondary-font-color);
+}
+
+#about:before {
+  content: "";
+  background: rgba(13, 20, 41, 0.8);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* ====================== About end ============================= */
