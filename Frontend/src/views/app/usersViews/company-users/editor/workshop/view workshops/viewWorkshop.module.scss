@@ -1,0 +1,87 @@
+.eventTitle {
+  margin-bottom: 30px;
+}
+
+.eventTitle::after {
+  top: 0;
+  width: 6px;
+  left: 0px;
+  bottom: 0px;
+  content: "";
+  height: 27%;
+  position: absolute;
+  background-color: #f82249;
+}
+
+.title {
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: 20px;
+  text-align: justify;
+  margin-bottom: 25px;
+}
+
+.eventDesc {
+  color: #333;
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-secondary-font-size);
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.workshopCard {
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.workshopCard:hover {
+ transform: scale(1.03);
+  cursor: pointer;
+}
+
+.IconBox{
+    float: left;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 100%;
+    color: #ffffff;
+    font-size: 18px;
+    background-color: #f94a6a;
+}
+
+.eventDetailsBox{
+    display: table;
+    padding-left: 15px;
+}
+
+.eventLabel{
+    font-weight: var(--app-bold-font-weight);
+    color: #878787;
+    font-size: var(--app-regular-secondary-font-size);
+}
+
+.eventValue{
+    font-size:var(--app-regular-secondary-font-size);
+    color: #333;
+    text-transform: uppercase;
+    font-weight: var(--app-extra-bold-font-weight);
+    font-family: var( --app-secondary-font);
+    margin-bottom: 0px;
+}
+
+.loaderComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+@media (max-width: 480px) {
+  .loaderComponent {
+    margin-top: 25%;
+  }
+}

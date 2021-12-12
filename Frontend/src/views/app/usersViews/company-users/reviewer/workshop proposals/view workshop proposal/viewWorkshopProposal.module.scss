@@ -1,0 +1,152 @@
+.actionCard {
+  background: #ffffff;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.actionCardBody {
+  padding: 0.5rem;
+}
+
+.workshopConductorImage {
+  position: relative;
+  display: block;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 7px solid rgba(253, 251, 251, 0.37);
+}
+
+.workshopConductorName {
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: var(--app-primary-font-color);
+  margin-bottom: 0px;
+}
+
+.workshopConductorEmail {
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: var(--app-tertiary-font-color);
+  margin-bottom: 0px;
+}
+
+.cvViewCard {
+  border: 1px solid var(--app-cards-primary-border-color);
+  border-radius: 6px;
+  margin-right: -0.5px;
+  margin-top: -0.5px;
+  margin-left: -0.5px;
+}
+
+.cardHeader {
+  background: #323639;
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: var(--app-secondary-font-color) !important;
+  margin-right: -0.5px;
+  margin-bottom: 0px !important;
+  border: none;
+}
+
+.headerDetails {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+}
+
+.accordianHeaderTopic {
+  margin-bottom: 0px;
+  flex: 1;
+}
+
+.pdfcomponentActions {
+  display: flex;
+  flex-basis: auto;
+}
+
+.cvZoomcomponent {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+}
+
+.zoomOutBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-end: 10px;
+  line-height: 1;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.zoomBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-start: 10px;
+  line-height: 1;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.pageChangerComponent {
+  display: flex;
+  align-items: center;
+  margin-inline-start:50px;
+  flex-basis: auto;
+}
+
+.pageNextBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-start: 10px;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.pagePreviousBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-end: 10px;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.cvViewBody {
+  height: 600px;
+  background: #525659;
+  overflow: auto;
+}
+
+.loaderComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+@media (max-width: 480px) {
+  .loaderComponent {
+    margin-top: 25%;
+  }
+}

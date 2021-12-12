@@ -1,0 +1,41 @@
+/* ======================== Fees Start ============================ */
+
+#fees {
+  padding: 60px 0;
+}
+
+#fees .card {
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 25px 0 rgba(6, 12, 34, 0.1);
+}
+
+#fees .card:hover {
+  box-shadow: 0 10px 35px 0 rgba(6, 12, 34, 0.2);
+}
+
+#fees .card hr {
+  margin: 25px 0;
+}
+
+#fees .card .card-title {
+  font-family: var(--app-secondary-font);
+  margin: 10px 0;
+  font-size: var(--app-regular-font-size);
+  letter-spacing: 1px;
+  font-weight: var(--app-bold-font-weight);
+}
+
+#fees .card .card-price {
+  font-family: var(--app-secondary-font);
+  font-size: 48px;
+  margin: 0;
+  color: var(--app-primary-font-color) !important;
+  font-weight: var(--app-regular-font-weight) !important;
+}
+.card-body-fees {
+  padding: 1rem 1rem !important;
+}
+
+/* ======================== Fees End ============================ */

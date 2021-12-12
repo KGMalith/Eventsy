@@ -1,0 +1,94 @@
+/* ============================= Download Start =========================== */
+#download {
+  padding: 120px 0 120px 0;
+}
+
+#download .nav-tabs {
+  text-align: center;
+  margin: auto;
+  display: block;
+  border-bottom: 0;
+  margin-bottom: 30px;
+}
+
+#download .nav-tabs li {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+#download .nav-tabs a {
+  border: none;
+  border-radius: 50px;
+  font-weight: var(--app-semi-bold-weight);
+  background-color: #0e1b4d;
+  color: var(--app-secondary-font-color);
+  padding: 10px 100px;
+}
+
+.downloadtitle {
+  margin-bottom: 30px;
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-semi-bold-weight);
+  font-size: var(--app-medium-secondary-font-size);
+  color: var(--app-primary-font-color);
+}
+
+.downloadtitle::after {
+  top: 0;
+  width: 6px;
+  left: 0px;
+  bottom: 0px;
+  content: "";
+  height: 50%;
+  position: absolute;
+  background-color: #f82249;
+}
+
+.downloadEventCard {
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
+@media (max-width: 991px) {
+  #download .nav-tabs a {
+    padding: 8px 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  #download .nav-tabs a {
+    padding: 8px 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  #download .nav-tabs a {
+    padding: 8px 30px;
+  }
+}
+
+#download .nav-tabs a.active {
+  background-color: #f82249;
+  color: var(--app-secondary-font-color);
+}
+
+#download .sub-heading {
+  text-align: center;
+  font-size: var(--app-medium-secondary-font-size);
+  font-style: italic;
+  margin: 0 auto 30px auto;
+}
+
+@media (min-width: 991px) {
+  #download .sub-heading {
+    width: 75%;
+  }
+}
+
+#download .tab-pane {
+  transition: ease-in-out .2s;
+}
+
+/* ============================= Download End =========================== */

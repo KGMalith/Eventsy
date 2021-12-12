@@ -1,0 +1,26 @@
+.header-wrapper {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+.app-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #ebedef;
+  min-height: calc(100vh - 57px);
+}
+
+@media (min-width: 992px) and (min-width: 992px) {
+  .header-wrapper {
+    margin-left: 256px;
+  }
+
+  .header-wrapper-expand {
+    margin-left: 0px;
+  }
+}
