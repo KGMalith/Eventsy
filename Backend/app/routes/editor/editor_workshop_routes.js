@@ -81,11 +81,18 @@ router.post('/get-single-workshop',
 	editorWorkshopController.getWorkshop
 );
 
-router.post('/get-all-workshops-list',
+router.get('/get-all-workshops-list',
 	checkToken,
 	emailValidation,
 	editorRoleValidation,
 	editorWorkshopController.getWorkshopsList
+);
+
+router.get('/get-all-requested-workshop-conductors',
+	checkToken,
+	emailValidation,
+	editorRoleValidation,
+	editorWorkshopController.getAllRequestedWorkshopConductors
 );
 
 module.exports = router;

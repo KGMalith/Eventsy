@@ -48,10 +48,10 @@ const schema = {
 		user_name_title: Joi.string().trim().required(),
 		user_first_name: Joi.string().trim().required(),
 		user_last_name: Joi.string().trim().required(),
-		user_role: Joi.number().trim().required(),
+		user_role: Joi.number().required(),
 	}),
 	viewUsersValidationSchema: Joi.object({
-		user_role: Joi.number().trim().required(),
+		user_role: Joi.number().required(),
 	}),
 };
 

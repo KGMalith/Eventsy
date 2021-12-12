@@ -1,7 +1,7 @@
 {
-  "name": "icaf_official_backend",
+  "name": "eventsy_backend",
   "version": "1.0.0",
-  "description": "This is 3rd year 2nd semester project of Application Framework Subject. This is the backend of the Conference management system which is called as icaf_official",
+  "description": "This is 3rd year 2nd semester project of Application Framework Subject. This is the backend of the Conference management system which is called as eventsy",
   "main": "server",
   "scripts": {
     "test": "jest"
@@ -12,16 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^7.4.2",
-    "aws-sdk": "^2.892.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
-    "firebase": "^8.7.1",
-    "firebase-admin": "^9.10.0",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
@@ -32,7 +28,6 @@
     "multer": "^1.4.2",
     "nodemailer": "^6.6.1",
     "randomstring": "^1.2.1",
-    "stripe": "^8.145.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

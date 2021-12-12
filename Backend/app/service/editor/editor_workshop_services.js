@@ -20,9 +20,9 @@ module.exports.getEventPendingWorkshopProposals = async () => {
 
 			let return_data = {
 				workshop_conductor_id: UserList[index]._id,
+				workshop_conductor_image: UserList[index].user_image,
 				workshop_conductor_email_address: UserList[index].email,
-				workshop_conductor_name: UserList[index].name_title + ' ' + UserList[index].first_name + ' ' + UserList[index].last_name,
-				workshop_conductor_mobile_number: UserList[index].mobile_number
+				workshop_conductor_name: UserList[index].name_title + ' ' + UserList[index].first_name + ' ' + UserList[index].last_name
 			};
 
 			user_list_array.push(return_data);
@@ -51,6 +51,7 @@ module.exports.getEventPendingWorkshopProposal = async (requestBody) => {
 		let return_data = {
 			workshop_conductor_id: userObj._id,
 			workshop_conductor_email_address: userObj.email,
+			workshop_conductor_image: userObj.user_image,
 			workshop_conductor_name: userObj.name_title + ' ' + userObj.first_name + ' ' + userObj.last_name,
 			workshop_conductor_mobile_number: userObj.mobile_number,
 			media_file: userObj.event_details.media_file_details.media_file
@@ -482,6 +483,33 @@ module.exports.getWorkshopsList = async () => {
 		return {
 			msg: 'All workshops generated',
 			data: workshop_data
+		};
+
+	} catch (err) {
+		throw err;
+	}
+};
+
+module.exports.getAllRequestedWorkshopConductors = async () => {
+	// eslint-disable-next-line no-useless-catch
+	try {
+		let workshop_conductors = [];
+
+		let UsersList = await User.find({ role: 2, 'event_details.is_event_created': false }, '_id name_title first_name last_name email');
+
+		if (UsersList.length > 0) {
+			for (let index = 0; index < UsersList.length; index++) {
+				let data = {
+					value: UsersList[index]._id,
+					label: UsersList[index].name_title + ' ' + UsersList[index].first_name + ' ' + UsersList[index].last_name + ' ' + '(' + UsersList[index].email + ')'
+				};
+				workshop_conductors.push(data);
+			}
+		}
+
+		return {
+			msg: 'All requested conductors generated',
+			data: workshop_conductors
 		};
 
 	} catch (err) {

@@ -3,7 +3,7 @@ const editorWorkshopService = require('../../service/editor/editor_workshop_serv
 module.exports.getEventPendingWorkshopProposals = async (req, res) => {
 	try {
 		const serviceResponse = await editorWorkshopService.getEventPendingWorkshopProposals();
-		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
 
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
@@ -13,7 +13,7 @@ module.exports.getEventPendingWorkshopProposals = async (req, res) => {
 module.exports.getEventPendingWorkshopProposal = async (req, res) => {
 	try {
 		const serviceResponse = await editorWorkshopService.getEventPendingWorkshopProposal(req.body);
-		return res.status(200).json({ success: true, msg: serviceResponse.msg, showMessage: true });
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
 
 	} catch (err) {
 		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
@@ -95,6 +95,16 @@ module.exports.getWorkshop = async (req, res) => {
 module.exports.getWorkshopsList = async (req, res) => {
 	try {
 		const serviceResponse = await editorWorkshopService.getWorkshopsList();
+		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
+
+	} catch (err) {
+		return res.status(err.status || 500).json({ success: false, msg: err.msg || 'Something went wrong. Try refreshing the page', showMessage: true });
+	}
+};
+
+module.exports.getAllRequestedWorkshopConductors = async (req, res) => {
+	try {
+		const serviceResponse = await editorWorkshopService.getAllRequestedWorkshopConductors();
 		return res.status(200).json({ success: true, msg: serviceResponse.msg, data: serviceResponse.data, showMessage: false });
 
 	} catch (err) {

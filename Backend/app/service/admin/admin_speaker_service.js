@@ -18,7 +18,7 @@ module.exports.getAllRequestedSpeakers = async () => {
 			let return_data = {
 				speaker_id: SpeakersList[index]._id,
 				speaker_name: SpeakersList[index].speaker_title + ' ' + SpeakersList[index].speaker_first_name + ' ' + SpeakersList[index].speaker_last_name,
-				speaker_affliation: SpeakersList[index].speaker_affiliation,
+				speaker_affiliation: SpeakersList[index].speaker_affiliation,
 				speaker_image: SpeakersList[index].speaker_image,
 				speaker_social_media: SpeakersList[index].speaker_social_media
 			};

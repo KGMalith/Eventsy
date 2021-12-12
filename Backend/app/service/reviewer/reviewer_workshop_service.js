@@ -15,8 +15,8 @@ module.exports.getAllWorkshopProposalSubmissions = async () => {
 			let return_data = {
 				workshop_conductor_id: WorkshopConductorList[index]._id,
 				workshop_conductor_email_address: WorkshopConductorList[index].email,
-				workshop_conductor_name: WorkshopConductorList[index].name_title + ' ' + WorkshopConductorList[index].first_name + ' ' + WorkshopConductorList[index].last_name,
-				workshop_conductor_mobile_number: WorkshopConductorList[index].mobile_number
+				workshop_conductor_image: WorkshopConductorList[index].user_image,
+				workshop_conductor_name: WorkshopConductorList[index].name_title + ' ' + WorkshopConductorList[index].first_name + ' ' + WorkshopConductorList[index].last_name
 			};
 
 			array_data_set.push(return_data);

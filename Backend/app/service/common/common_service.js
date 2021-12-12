@@ -273,7 +273,7 @@ module.exports.updateUserData = async (requestUser,requestBody) => {
 		userObj.name_title = requestBody.name_title;
 		userObj.first_name = requestBody.first_name;
 		userObj.last_name = requestBody.last_name;
-		userObj.affliation = requestBody.affliation && requestBody.affliation;
+		userObj.affiliation = requestBody.affiliation && requestBody.affiliation;
 		userObj.save();
 
 		return {

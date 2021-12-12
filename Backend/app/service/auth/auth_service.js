@@ -72,7 +72,7 @@ module.exports.userSignup = async (requestBody) => {
 			name_title: requestBody.name_title,
 			first_name: requestBody.first_name,
 			last_name: requestBody.last_name,
-			affliation: requestBody.role === 1 && requestBody.affiliation,
+			affiliation: requestBody.role === 1 && requestBody.affiliation,
 			role: requestBody.role,
 			event_details:{
 				media_file_details: {

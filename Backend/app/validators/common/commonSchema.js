@@ -13,7 +13,7 @@ const schema = {
 		name_title: Joi.string().trim().required(),
 		first_name: Joi.string().trim().required(),
 		last_name: Joi.string().trim().required(),
-		affliation: Joi.string().trim()
+		affiliation: Joi.string().trim()
 	}),
 };
 

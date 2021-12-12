@@ -20,7 +20,7 @@ module.exports.getEventPendingResearchPapers = async () => {
 			let return_data = {
 				researcher_id: UserList[index]._id,
 				researcher_email_address: UserList[index].email,
-				researcher_affliation: UserList[index].affliation,
+				researcher_affiliation: UserList[index].affiliation,
 				researcher_name: UserList[index].name_title + ' ' + UserList[index].first_name + ' ' + UserList[index].last_name,
 				researcher_mobile_number: UserList[index].mobile_number
 			}; 
@@ -51,7 +51,7 @@ module.exports.getEventPendingResearchPaper = async (requestBody) => {
 		let return_data = {
 			researcher_id: userObj._id,
 			researcher_email_address: userObj.email,
-			researcher_affliation: userObj.affliation,
+			researcher_affiliation: userObj.affiliation,
 			researcher_name: userObj.name_title + ' ' + userObj.first_name + ' ' + userObj.last_name,
 			researcher_mobile_number: userObj.mobile_number,
 			media_file: userObj.event_details.media_file_details.media_file

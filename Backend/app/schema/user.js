@@ -23,7 +23,7 @@ let UserSchema = new Schema({
 	last_name:{
 		type:String
 	},
-	affliation:{
+	affiliation:{
 		type: String
 	},
 	role:{

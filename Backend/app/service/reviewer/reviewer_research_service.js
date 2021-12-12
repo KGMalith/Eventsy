@@ -14,10 +14,10 @@ module.exports.getAllPendingResearchPaperSubmissions = async () => {
 			
 			let return_data = {
 				researcher_id: ReviewerList[index]._id,
+				researcher_image: ReviewerList[index].user_image,
 				researcher_email_address: ReviewerList[index].email,
-				researcher_affliation: ReviewerList[index].affliation,
-				researcher_name: ReviewerList[index].name_title + ' ' + ReviewerList[index].first_name + ' ' + ReviewerList[index].last_name,
-				researcher_mobile_number: ReviewerList[index].mobile_number
+				researcher_affiliation: ReviewerList[index].affiliation,
+				researcher_name: ReviewerList[index].name_title + ' ' + ReviewerList[index].first_name + ' ' + ReviewerList[index].last_name
 			}; 
 
 			array_data_set.push(return_data);
@@ -46,10 +46,10 @@ module.exports.viewSingleResearchPaperSubmission = async (requestBody) => {
 
 		let return_data = {
 			researcher_id: researcherObj._id,
+			researcher_image: researcherObj.user_image,
 			researcher_email_address: researcherObj.email,
-			researcher_affliation: researcherObj.affliation,
+			researcher_affiliation: researcherObj.affiliation,
 			researcher_name: researcherObj.name_title + ' ' + researcherObj.first_name + ' ' + researcherObj.last_name,
-			researcher_mobile_number: researcherObj.mobile_number,
 			media_file: researcherObj.event_details.media_file_details.media_file
 		}; 
 
