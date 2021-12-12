@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Form, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
-import './workshopForm.css';
+import  './workshopForm.scss';
 import CustomDateTime from '../../../../../../../../components/custom-date-time';
 import { CommonTextBox } from '../../../../../../../../components/input-text';
 import { CustomTextArea } from '../../../../../../../../components/text-area';
@@ -15,6 +15,8 @@ const WorkshopForm = (props) => {
     const schema = yup.object({
         workshopName: yup.string().trim().required('Required'),
         workshopDesc: yup.string().trim().required('Required'),
+        workshopConductor: yup.string().trim().required('Required'),
+        speaker: yup.array().of(yup.string()).required('Required')
     });
     const animatedComponents = makeAnimated();
 
@@ -47,29 +49,31 @@ const WorkshopForm = (props) => {
                     values
                 }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Row>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="workshopName"
-                                    label="Workshop Name"
-                                    type="text"
-                                    name="workshopName"
-                                    value={values.workshopName || ''}
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.workshopName}
-                                    isInvalid={submitCount > 0 && !!errors.workshopName}
-                                />
-                            </Col>
-                            <Col>
-                                <CustomDateTime
-                                    label="Workshop Date & Time"
-                                    onChange={(e) => { setFieldValue('dateTime', e) }}
-                                    value={values.dateTime || ''}
-                                />
-                            </Col>
-                        </Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="workshopName"
+                                        label="Workshop Name"
+                                        type="text"
+                                        name="workshopName"
+                                        value={values.workshopName || ''}
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.workshopName}
+                                        isInvalid={submitCount > 0 && !!errors.workshopName}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CustomDateTime
+                                        label="Workshop Date & Time"
+                                        onChange={(e) => { setFieldValue('dateTime', e) }}
+                                        value={values.dateTime || ''}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
                         <Col className="mt-3">
                             <CustomTextArea
                                 controlId="workshopDesc"
@@ -96,6 +100,22 @@ const WorkshopForm = (props) => {
                                         options={props.speakersList}
                                         name="workshoplist"
                                         onChange={(e) => setFieldValue("speaker", e)}
+                                    />
+                                </div>
+                            </Form.Group>
+                        </Col>
+                        <Col className="mt-3">
+                            <Form.Group>
+                                <Form.Label className="primaryLabel">
+                                    Requested Workshop Conductor
+                                </Form.Label>
+                                <div>
+                                    <Select
+                                        components={animatedComponents}
+                                        styles={customStyles}
+                                        options={props.conductorsList}
+                                        name="workshopConductor"
+                                        onChange={(e) => setFieldValue("workshopConductor", e)}
                                     />
                                 </div>
                             </Form.Group>

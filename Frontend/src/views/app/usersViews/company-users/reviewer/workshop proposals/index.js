@@ -15,7 +15,7 @@ export class WorkShopProposals extends Component {
     }
 
     componentDidMount() {
-        const LoadSpeakers = async () => {
+        const LoadWorkshop = async () => {
             this.setState({ is_page_loading: true })
             let respond = await reviewerGetAllWorkshopProposals();
             if (respond.success === true) {
@@ -24,7 +24,7 @@ export class WorkShopProposals extends Component {
                 this.setState({ is_page_loading: false })
             }
         };
-        LoadSpeakers();
+        LoadWorkshop();
     }
 
     LoadWorkshopProposal(id) {

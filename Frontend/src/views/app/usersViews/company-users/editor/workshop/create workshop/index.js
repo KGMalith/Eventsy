@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Col, Container } from 'react-bootstrap';
-import { createWorkshop } from '../../../../../../../services/util/editor/workshops';
+import { getAllRequestedWorkshopConductors } from '../../../../../../../services/util/editor/workshops';
 import { getAllSpeakersList } from '../../../../../../../services/util/editor/speakers';
 import styles from './createWorkshop.module.scss';
 import WorkshopForm from './workshopForm';
@@ -15,6 +15,7 @@ export class CreateWorkshop extends Component {
             is_page_loading: false,
             isSubmitLoading: false,
             speakers_data_set: [],
+            conductors_data_set:[]
         }
     }
 
@@ -62,9 +63,10 @@ export class CreateWorkshop extends Component {
     componentDidMount() {
         const LoadSpeakers = async () => {
             this.setState({ is_page_loading: true });
-            let respond = await getAllSpeakersList();
-            if (respond.success === true) {
-                this.setState({ is_page_loading: false, speakers_data_set: respond.data });
+            let speakersRespond = await getAllSpeakersList();
+            let requestedConductorsRespond = await getAllRequestedWorkshopConductors();
+            if (speakersRespond.success && requestedConductorsRespond) {
+                this.setState({ is_page_loading: false, speakers_data_set: speakersRespond.data, conductors_data_set: requestedConductorsRespond.data });
             } else {
                 this.setState({ is_page_loading: false });
             }
@@ -87,7 +89,7 @@ export class CreateWorkshop extends Component {
                                     <Card.Title className={styles.cardTitle}>Create Workshop</Card.Title>
                                 </Card.Header>
                                 <Card.Body>
-                                    <WorkshopForm submitForm={this.submitForm} speakersList={this.state.speakers_data_set} isLoading={this.state.isSubmitLoading} />
+                                    <WorkshopForm submitForm={this.submitForm} speakersList={this.state.speakers_data_set} conductorsList={this.state.conductors_data_set} isLoading={this.state.isSubmitLoading} />
                                 </Card.Body>
                             </Card>
                         </Col>

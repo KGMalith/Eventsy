@@ -42,6 +42,7 @@ import ViewRequestedWorkshops from '../usersViews/company-users/admin/workshops/
 import ViewRequestedWorkshop from '../usersViews/company-users/admin/workshops/view requested workshop/view requested workshop';
 import UserProfile from '../usersViews/common-views/user profile';
 import ConferencePreview from '../usersViews/common-views/conference preview';
+import ViewPendingWorkshopRequests from '../usersViews/company-users/editor/workshop/viewPendingRequests';
 
 
 const routes = [
@@ -62,6 +63,7 @@ const routes = [
     { path: '/app/editor-view-pending-presentations/:id', component:  EditPendingPresentation , exact: true },
     { path: '/app/editor-view-presentations', component:  ViewPresentations , exact: true },
     { path: '/app/editor-view-presentations/:id', component:  EditPresentation , exact: true },
+    { path: '/app/editor-view-requested-workshops', component: ViewPendingWorkshopRequests, exact: true },
     { path: '/app/editor-create-workshop', component:  CreateWorkshop , exact: true },
     { path: '/app/editor-view-workshops', component: ViewWorkshops , exact: true },
     { path: '/app/editor-view-workshops/:id', component: EditWorkshop , exact: true },

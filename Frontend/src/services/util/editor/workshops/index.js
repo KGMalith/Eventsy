@@ -1,6 +1,25 @@
 import { axiosInstance } from '../../../init';
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+export let editorGetAllPendingWorkshopProposals = async () => {
+    try {
+        let value = await axiosInstance.get(BASE_URL + '/editor/get-event-pending-workshop-proposals');
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let editorGetPendingWorkshopProposal = async (data) => {
+    try {
+        let value = await axiosInstance.post(BASE_URL + '/editor/get-event-pending-workshop-proposal', {
+            user_id: data
+        });
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
 
 export let createWorkshop = async (dataSet) => {
     try {
@@ -80,6 +99,15 @@ export let getWorkshop = async (data) => {
         let value = await axiosInstance.post(BASE_URL + '/editor/get-single-workshop', {
             workshop_id: data
         })
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getAllRequestedWorkshopConductors = async () => {
+    try {
+        let value = await axiosInstance.get(BASE_URL + '/editor/get-all-requested-workshop-conductors');
         return value;
     } catch (error) {
         return error;
