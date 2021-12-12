@@ -33,7 +33,7 @@ export let signUp = async (dataSet) => {
             name_title: dataSet.nameTitle,
             first_name: dataSet.firstName,
             last_name: dataSet.lastName,
-            affliation: dataSet.affiliation && dataSet.affiliation,
+            affiliation: dataSet.affiliation,
             role: dataSet.userType,
             file_url: dataSet.file_url
         })

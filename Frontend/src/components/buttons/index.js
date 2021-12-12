@@ -13,6 +13,8 @@ export const CustomButton = (props) => {
                     ${props.classType === 'regularCardBtn' ? styles.regularCardBtn : ''}
                     ${props.classType === 'formSubmitBtn' ? styles.formSubmitBtn : ''}
                     ${props.classType === 'formRejectBtn' ? styles.formRejectBtn : ''}
+                    ${props.classType === 'successBtn' ? styles.successBtn : ''}
+                    ${props.classType === 'dangerBtn' ? styles.dangerBtn : ''}
                 `}
                 disabled={props.buttonDisabled}
                 onClick={props.handleClick}
@@ -30,5 +32,6 @@ export const CustomButton = (props) => {
 }
 
 CustomButton.defaultProps = {
-    type: "primaryBtn"
+    classType: "primaryBtn",
+    type:'button'
 }

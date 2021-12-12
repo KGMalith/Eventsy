@@ -1,0 +1,98 @@
+.loaderComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+.researchPaperCard {
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.headerBackground {
+  height: 100px;
+  background: #d35f5f;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.researcherImage {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 7px solid rgba(253, 251, 251, 0.37);
+  margin-top: -80px;
+}
+
+.researcherName {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: 22px;
+  color: var(--app-primary-font-color);
+  text-align: center;
+  margin-top: 4%;
+  margin-bottom: 0px;
+}
+
+.researcherEmail {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: #878787;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.researcherAffiliation {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: #878787;
+  text-align: center;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  i {
+    color: #878787;
+  }
+}
+
+.emptyMessage {
+  text-align: center;
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: #878787;
+}
+
+.MainMessageComponent {
+  height: 80vh;
+  position: relative;
+}
+
+.innerMessageComponent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 480px) {
+  .loaderComponent {
+    margin-top: 25%;
+  }
+}
