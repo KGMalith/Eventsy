@@ -20,6 +20,7 @@ export class VerifyEmail extends Component {
         let respond = await verifyEmail(this.state.user_email,value.code);
         if (respond.success === true){
             this.setState({ isFormLoading: false });
+            this.props.history.push('/signin');
         }else{
             this.setState({ isFormLoading: false });
         }

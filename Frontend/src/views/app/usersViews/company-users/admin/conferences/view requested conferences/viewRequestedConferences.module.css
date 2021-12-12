@@ -1,0 +1,37 @@
+.cardTitle{
+    font-family: var(--app-tertiary-font);
+    font-size: var( --app-medium-secondary-font-size);
+    font-weight: var(--app-semi-bold-weight);
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.cardLabels{
+    font-family: var(--app-tertiary-font);
+    font-size: var(--app-regular-secondary-font-size);
+    font-weight: var(--app-semi-bold-weight);
+    color: #222222;
+}
+
+.cardValues{
+    font-family: var(--app-tertiary-font);
+    font-size: var(--app-regular-secondary-font-size);
+    font-weight: var( --app-regular-font-weight);
+    color: #8d8d8d;
+}
+.cardValuesDesc{
+    font-family: var(--app-tertiary-font);
+    font-size: var(--app-regular-secondary-font-size);
+    font-weight: var( --app-regular-font-weight);
+    color: #8d8d8d;
+    text-align: center;
+}
+
+.speakersList{
+    margin-bottom: 0px !important;
+}
+
+.speakersList i{
+    font-size: 8px;
+}

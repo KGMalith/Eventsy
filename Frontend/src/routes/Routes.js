@@ -9,7 +9,7 @@ import Signup from '../views/common/signup';
 import ForgotPassword from '../views/common/forgot-password';
 import Workshops from '../views/common/events/workshops';
 import ResearchPaperPresentations from '../views/common/events/researchPapers';
-// import AppLayout from '../views/app/layouts/appLayout.js';
+import AppLayout from '../views/app/layouts/appLayout.js';
 import VerifyEmail from '../views/common/verify-email';
 import { createBrowserHistory } from 'history';
 export const history = createBrowserHistory();
@@ -31,7 +31,7 @@ const Routes = () => {
                     {/*<PublicRoutes component={} path={`/join-user/:id`} exact /> */}
 
                     {/* Private Routes */}
-                    {/* <PrivateRoutes component={AppLayout} path={`/app`} />*/}
+                    <PrivateRoutes component={AppLayout} path={`/app`} />
                     
 
                     {/* 404 error page */}

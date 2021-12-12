@@ -62,7 +62,7 @@ export default function SignupForm(props) {
             <Formik
                 validationSchema={schema}
                 onSubmit={(values) => props.submitForm(values)}
-                initialValues={{ userType: userType, nameTitle: userTitleValues[0].value, uploadfiles:[] }}>
+                initialValues={{ userType: userType, nameTitle: userTitleValues[0].value, uploadfiles: [] }}>
 
                 {({
                     errors,

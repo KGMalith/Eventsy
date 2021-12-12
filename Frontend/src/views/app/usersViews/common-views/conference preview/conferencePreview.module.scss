@@ -1,0 +1,40 @@
+.previewBackground {
+  background: #fff;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+/* ================== header start ====================== */
+.header {
+  height: 90px;
+  transition: all 0.5s;
+  z-index: 2;
+  background: rgba(6, 12, 34, 0.98) !important;
+  height: 70px;
+}
+
+.header .logo img {
+  padding: 0;
+  margin: 0;
+  max-height: 40px;
+}
+
+@media (max-width: 992px) {
+  .header .logo img {
+    max-height: 30px;
+  }
+}
+
+/* ==================  header end ==================== */
+
+.loaderComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+@media (max-width: 480px) {
+  .loaderComponent {
+    margin-top: 25%;
+  }
+}

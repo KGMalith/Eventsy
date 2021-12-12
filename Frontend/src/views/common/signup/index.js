@@ -31,7 +31,7 @@ export class Signup extends Component {
             nameTitle: value.nameTitle,
             firstName: value.firstName,
             lastName: value.lastName,
-            affiliation: value.userType === 1 && value.affiliation,
+            affiliation: value.userType === 1 ? value.affiliation:null,
             userType: value.userType,
             file_url:this.state.fileURL
         }

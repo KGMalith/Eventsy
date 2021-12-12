@@ -1,0 +1,18 @@
+.form-action-title{
+    font-family: var(--app-secondary-font);
+    font-size: var(--app-regular-secondary-font-size);
+    font-weight: var(--app-bold-font-weight);
+    color: var(--app-tertiary-font-color);
+}
+
+.horizontal-line{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.primaryLabel {
+  font-family: var(--app-tertiary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-secondary-font-size);
+  color: var(--app-primary-font-color);
+}
