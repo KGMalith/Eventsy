@@ -81,7 +81,7 @@ router.post('/get-single-presentation',
 	editorPresentationController.getSinglePresentation
 );
 
-router.post('/get-all-presentation-list',
+router.get('/get-all-presentation-list',
 	checkToken,
 	emailValidation,
 	editorRoleValidation,

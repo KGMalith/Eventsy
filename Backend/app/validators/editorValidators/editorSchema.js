@@ -114,7 +114,6 @@ const schema = {
 		image_type: Joi.string().trim().required()
 	}),
 	addWorkshopValidationSchema: Joi.object({
-		user_id: Joi.string().trim().required(),
 		workshop_conductor_id: Joi.string().trim().required(),
 		speakers_id_list:Joi.array().items(Joi.string().trim().required()),
 		workshop_name: Joi.string().trim().required(),

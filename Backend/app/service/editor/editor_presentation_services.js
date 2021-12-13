@@ -19,10 +19,10 @@ module.exports.getEventPendingResearchPapers = async () => {
 			
 			let return_data = {
 				researcher_id: UserList[index]._id,
+				researcher_image: UserList[index].user_image,
 				researcher_email_address: UserList[index].email,
 				researcher_affiliation: UserList[index].affiliation,
-				researcher_name: UserList[index].name_title + ' ' + UserList[index].first_name + ' ' + UserList[index].last_name,
-				researcher_mobile_number: UserList[index].mobile_number
+				researcher_name: UserList[index].name_title + ' ' + UserList[index].first_name + ' ' + UserList[index].last_name
 			}; 
 
 			user_list_array.push(return_data);
@@ -50,10 +50,10 @@ module.exports.getEventPendingResearchPaper = async (requestBody) => {
 
 		let return_data = {
 			researcher_id: userObj._id,
+			researcher_image: userObj.user_image,
 			researcher_email_address: userObj.email,
 			researcher_affiliation: userObj.affiliation,
 			researcher_name: userObj.name_title + ' ' + userObj.first_name + ' ' + userObj.last_name,
-			researcher_mobile_number: userObj.mobile_number,
 			media_file: userObj.event_details.media_file_details.media_file
 		};
 
@@ -325,11 +325,16 @@ module.exports.getSingleTempPresentation = async (requestBody) => {
 			throw new BadRequestException('Inavalid presentation id');
 		}
 
+		let conductor_object = {
+			value: presentation.presentation_conductor._id,
+			label: presentation.presentation_conductor.speaker_title + ' ' + presentation.presentation_conductor.speaker_first_name + ' ' + presentation.presentation_conductor.speaker_last_name
+		};
+
 		let respondData = {
 			presentation_id: presentation._id,
 			presentation_topic: presentation.presentation_topic,
 			presentation_description: presentation.presentation_description,
-			presentation_conductor: presentation.presentation_conductor.speaker_title + ' ' + presentation.presentation_conductor.speaker_first_name + ' ' + presentation.presentation_conductor.speaker_last_name,
+			presentation_conductor: conductor_object,
 			presentation_date_and_time: presentation.presentation_date_and_time
 		};
 
@@ -348,17 +353,22 @@ module.exports.getSinglePresentation = async (requestBody) => {
 
 	// eslint-disable-next-line no-useless-catch
 	try {
-		let presentation = await ReserchPaperPresentation.findById(requestBody.presentation_id).populate('presentation_conductor', 'speaker_title speaker_first_name speaker_last_name');
+		let presentation = await ReserchPaperPresentation.findById(requestBody.presentation_id).populate('presentation_conductor', '_id speaker_title speaker_first_name speaker_last_name');
 		
 		if (!presentation) {
 			throw new BadRequestException('Inavalid presentation id');
 		}
+
+		let conductor_object = {
+			value: presentation.presentation_conductor._id,
+			label: presentation.presentation_conductor.speaker_title + ' ' + presentation.presentation_conductor.speaker_first_name + ' ' + presentation.presentation_conductor.speaker_last_name
+		};
 		
 		let respondData = {
 			presentation_id: presentation._id,
 			presentation_topic: presentation.presentation_topic,
 			presentation_description: presentation.presentation_description,
-			presentation_conductor: presentation.presentation_conductor.speaker_title + ' ' + presentation.presentation_conductor.speaker_first_name + ' ' + presentation.presentation_conductor.speaker_last_name,
+			presentation_conductor: conductor_object,
 			presentation_date_and_time: presentation.presentation_date_and_time
 		};
 

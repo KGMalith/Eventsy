@@ -83,8 +83,8 @@ module.exports.createWorkShop = async (requestUser, requestBody) => {
 			throw new UnauthorizedException();
 		}
 
-		//generating user object
-		let UserObject = await User.findById(requestBody.user_id).session(session);
+		//generating workshop requested user object
+		let UserObject = await User.findById(requestBody.workshop_conductor_id).session(session);
 
 		if (!UserObject) {
 			throw new BadRequestException('Invalid user id');
