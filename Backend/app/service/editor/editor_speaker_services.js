@@ -94,9 +94,9 @@ module.exports.editSpeaker = async (requestUser, requestBody) => {
 			matching_speaker_id: SpeakerObj._id,
 			speaker_image: requestBody.image_link ? requestBody.image_link : SpeakerObj.speaker_image,
 			speaker_social_media: {
-				twitter_link: requestBody.twitter_link,
-				facebook_link: requestBody.facebook_link,
-				linkedin_link: requestBody.linkedin_link,
+				twitter_link: requestBody.twitter_link ? requestBody.twitter_link : SpeakerObj.speaker_social_media.twitter_link,
+				facebook_link: requestBody.facebook_link ? requestBody.facebook_link : SpeakerObj.speaker_social_media.facebook_link,
+				linkedin_link: requestBody.linkedin_link ? requestBody.linkedin_link : SpeakerObj.speaker_social_media.linkedin_link,
 			},
 			isNewRequest: false
 		};
@@ -165,9 +165,9 @@ module.exports.editTemporarySpeaker = async (requestBody) => {
 		SpeakerObj.speaker_last_name = requestBody.speaker_last_name;
 		SpeakerObj.speaker_affiliation = requestBody.speaker_affiliation;
 		SpeakerObj.speaker_image = requestBody.image_link ? requestBody.image_link : SpeakerObj.speaker_image;
-		SpeakerObj.speaker_social_media.twitter_link = requestBody.twitter_link;
-		SpeakerObj.speaker_social_media.facebook_link = requestBody.facebook_link;
-		SpeakerObj.speaker_social_media.linkedin_link = requestBody.linkedin_link;
+		SpeakerObj.speaker_social_media.twitter_link = requestBody.twitter_link ? requestBody.twitter_link : SpeakerObj.speaker_social_media.twitter_link;
+		SpeakerObj.speaker_social_media.facebook_link = requestBody.facebook_link ? requestBody.facebook_link : SpeakerObj.speaker_social_media.facebook_link;
+		SpeakerObj.speaker_social_media.linkedin_link = requestBody.linkedin_link ? requestBody.linkedin_link : SpeakerObj.speaker_social_media.linkedin_link;
 
 		await SpeakerObj.save();
 
@@ -198,9 +198,9 @@ module.exports.getAllSpeakers = async () => {
 				speaker_affiliation: speakerList[index].speaker_affiliation,
 				speaker_image: speakerList[index].speaker_image,
 				speaker_social_media_links:{
-					twitter_link: speakerList[index].twitter_link,
-					facebook_link: speakerList[index].facebook_link,
-					linkedin_link: speakerList[index].linkedin_link
+					twitter_link: speakerList[index].speaker_social_media.twitter_link,
+					facebook_link: speakerList[index].speaker_social_media.facebook_link,
+					linkedin_link: speakerList[index].speaker_social_media.linkedin_link
 				}
 			};
 			spakers_array.push(data_set);
@@ -230,9 +230,9 @@ module.exports.getAllTemporarySpeakers = async () => {
 				speaker_affiliation: speakerList[index].speaker_affiliation,
 				speaker_image: speakerList[index].speaker_image,
 				speaker_social_media_links: {
-					twitter_link: speakerList[index].twitter_link,
-					facebook_link: speakerList[index].facebook_link,
-					linkedin_link: speakerList[index].linkedin_link
+					twitter_link: speakerList[index].speaker_social_media.twitter_link,
+					facebook_link: speakerList[index].speaker_social_media.facebook_link,
+					linkedin_link: speakerList[index].speaker_social_media.linkedin_link
 				}
 			};
 			spakers_array.push(data_set);
@@ -260,13 +260,15 @@ module.exports.getSingleTemporarySpeaker = async (requestBody) => {
 
 		let data_set = {
 			speaker_id: speaker._id,
-			speaker_name: speaker.speaker_title + ' ' + speaker.speaker_first_name + ' ' + speaker.speaker_last_name,
+			speaker_title: speaker.speaker_title,
+			speaker_first_name: speaker.speaker_first_name,
+			speaker_last_name: speaker.speaker_last_name,
 			speaker_affiliation: speaker.speaker_affiliation,
 			speaker_image: speaker.speaker_image,
 			speaker_social_media_links: {
-				twitter_link: speaker.twitter_link,
-				facebook_link: speaker.facebook_link,
-				linkedin_link: speaker.linkedin_link
+				twitter_link: speaker.speaker_social_media.twitter_link,
+				facebook_link: speaker.speaker_social_media.facebook_link,
+				linkedin_link: speaker.speaker_social_media.linkedin_link
 			}
 		};
 
@@ -293,13 +295,15 @@ module.exports.getSingleSpeaker = async (requestBody) => {
 
 		let data_set = {
 			speaker_id: speaker._id,
-			speaker_name: speaker.speaker_title + ' ' + speaker.speaker_first_name + ' ' + speaker.speaker_last_name,
+			speaker_title: speaker.speaker_title,
+			speaker_first_name: speaker.speaker_first_name,
+			speaker_last_name: speaker.speaker_last_name,
 			speaker_affiliation: speaker.speaker_affiliation,
 			speaker_image: speaker.speaker_image,
 			speaker_social_media_links: {
-				twitter_link: speaker.twitter_link,
-				facebook_link: speaker.facebook_link,
-				linkedin_link: speaker.linkedin_link
+				twitter_link: speaker.speaker_social_media.twitter_link,
+				facebook_link: speaker.speaker_social_media.facebook_link,
+				linkedin_link: speaker.speaker_social_media.linkedin_link
 			}
 		};
 
