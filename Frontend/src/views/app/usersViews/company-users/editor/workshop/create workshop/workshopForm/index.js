@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Form, Row, Col } from 'react-bootstrap';
@@ -15,21 +15,10 @@ const WorkshopForm = (props) => {
     const schema = yup.object({
         workshopName: yup.string().trim().required('Required'),
         workshopDesc: yup.string().trim().required('Required'),
-        workshopConductor: yup.string().trim().required('Required'),
-        speaker: yup.array().of(yup.string()).required('Required')
+        workshopConductor: yup.string().required('Required'),
+        speaker: yup.array().of(yup.object().shape({ label: yup.string(), value: yup.string()})).required('Required').nullable()
     });
     const animatedComponents = makeAnimated();
-
-    const customStyles = {
-        control: (base, state) => ({
-            ...base,
-            '&:hover': { borderColor: '#86b7fe' },
-            '&:focus': { borderColor: '#86b7fe' }, // border style on hover
-            border: '1px solid var(--app-primary-border-color)', // default border color
-            borderRadius: '0.25rem',
-            boxShadow: 'none', // no box-shadow
-        })
-    }
 
 
     return (
@@ -38,7 +27,6 @@ const WorkshopForm = (props) => {
                 validationSchema={schema}
                 onSubmit={(values, resetForm) => props.submitForm(values, resetForm)}
                 initialValues={{ dateTime: new Date()}}>
-
                 {({
                     errors,
                     handleChange,
@@ -94,13 +82,37 @@ const WorkshopForm = (props) => {
                                 </Form.Label>
                                 <div>
                                     <Select
+                                        defaultValue={values.speaker || ''}
                                         components={animatedComponents}
-                                        styles={customStyles}
                                         isMulti
                                         options={props.speakersList}
-                                        name="workshoplist"
+                                        name="speaker"
                                         onChange={(e) => setFieldValue("speaker", e)}
+                                        styles={
+                                            errors.speaker === 'Required' ?
+                                                {
+                                                    control: (base, state) => ({
+                                                        ...base,
+                                                        '&:hover': { borderColor: '#dc3545' }, // border style on hover
+                                                        border: '1px solid #dc3545', // default border color
+                                                        borderRadius: '0.25rem',
+                                                        boxShadow: 'none', // no box-shadow
+                                                    })
+                                                }
+                                                :
+                                                {
+                                                    control: (base, state) => ({
+                                                        ...base,
+                                                        '&:hover': { borderColor: '#86b7fe' },
+                                                        '&:focus': { borderColor: '#86b7fe' }, // border style on hover
+                                                        border: '1px solid var(--app-primary-border-color)', // default border color
+                                                        borderRadius: '0.25rem',
+                                                        boxShadow: 'none', // no box-shadow
+                                                    })
+                                                }
+                                        }
                                     />
+                                    <p className="errorMsg">{errors.speaker}</p>
                                 </div>
                             </Form.Group>
                         </Col>
@@ -111,12 +123,36 @@ const WorkshopForm = (props) => {
                                 </Form.Label>
                                 <div>
                                     <Select
+                                        defaultValue={values.workshopConductor ||''}
                                         components={animatedComponents}
-                                        styles={customStyles}
                                         options={props.conductorsList}
                                         name="workshopConductor"
-                                        onChange={(e) => setFieldValue("workshopConductor", e)}
+                                        onChange={(e) => setFieldValue("workshopConductor", e.value)}
+                                        styles={
+                                            errors.workshopConductor === 'Required' ?
+                                                {
+                                                    control: (base, state) => ({
+                                                        ...base,
+                                                        '&:hover': { borderColor: '#dc3545' }, // border style on hover
+                                                        border: '1px solid #dc3545', // default border color
+                                                        borderRadius: '0.25rem',
+                                                        boxShadow: 'none', // no box-shadow
+                                                    })
+                                                }
+                                                :
+                                                {
+                                                    control: (base, state) => ({
+                                                        ...base,
+                                                        '&:hover': { borderColor: '#86b7fe' },
+                                                        '&:focus': { borderColor: '#86b7fe' }, // border style on hover
+                                                        border: '1px solid var(--app-primary-border-color)', // default border color
+                                                        borderRadius: '0.25rem',
+                                                        boxShadow: 'none', // no box-shadow
+                                                    })
+                                                }
+                                        }
                                     />
+                                    <p className="errorMsg">{errors.workshopConductor}</p>
                                 </div>
                             </Form.Group>
                         </Col>
@@ -125,8 +161,8 @@ const WorkshopForm = (props) => {
                                 classType="formSubmitBtn"
                                 buttonType="submit"
                                 label="Submit"
-                                buttonDisabled={props.isLoading === true ? true : false}
-                                backicon={props.isLoading === true ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> : null}
+                                buttonDisabled={props.isLoading ? true : false}
+                                backicon={props.isLoading ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> : null}
                             />
                         </Col>
                     </Form>

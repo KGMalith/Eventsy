@@ -31,34 +31,36 @@ export default function ContactForm(props) {
                     values
                 }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Row>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="contactName"
-                                    placeholder="Your Name"
-                                    type="text"
-                                    value={values.contactName || ''}
-                                    name="contactName"
-                                    classType="defaultTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.contactName}
-                                    isInvalid={submitCount > 0 && !!errors.contactName}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="contactEmail"
-                                    placeholder="Your Email"
-                                    type="email"
-                                    value={values.contactEmail || ''}
-                                    name="contactEmail"
-                                    classType="defaultTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.contactEmail}
-                                    isInvalid={submitCount > 0 && !!errors.contactEmail}
-                                />
-                            </Col>
-                        </Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="contactName"
+                                        placeholder="Your Name"
+                                        type="text"
+                                        value={values.contactName || ''}
+                                        name="contactName"
+                                        classType="defaultTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.contactName}
+                                        isInvalid={submitCount > 0 && !!errors.contactName}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="contactEmail"
+                                        placeholder="Your Email"
+                                        type="email"
+                                        value={values.contactEmail || ''}
+                                        name="contactEmail"
+                                        classType="defaultTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.contactEmail}
+                                        isInvalid={submitCount > 0 && !!errors.contactEmail}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
                         <Col className="mt-3">
                             <CommonTextBox
                                 controlId="contactSubject"

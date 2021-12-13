@@ -44,31 +44,31 @@ export class ViewPendingSpeakers extends Component {
                             {(this.state.all_speakers && (this.state.all_speakers).length > 0) &&
                                 (this.state.all_speakers).map((values,idx)=>(
                                     <Col sm={3} key={idx}>
-                                        <Card className={styles.speakerCard} onClick={()=>this.LoadEditSpeaker(values._id)}>
+                                        <Card className={styles.speakerCard} onClick={() => this.LoadEditSpeaker(values.speaker_id)}>
                                             <div className={styles.headerBackground}></div>
                                             <Card.Body>
                                                 <div>
                                                     <Image src={values.speaker_image ? values.speaker_image : `${process.env.REACT_APP_BASE_URL}/images/dummy-avatar.png`} className={styles.speakerImage} fluid />
                                                 </div>
-                                                <p className={styles.speakerName}>{`${values.speaker_title} ${values.speaker_first_name} ${values.speaker_last_name}`}</p>
+                                                <p className={styles.speakerName}>{values.speaker_name}</p>
                                                 <p className={styles.speakerAffiliation}>{values.speaker_affiliation}</p>
                                                 <Row className={styles.socialMediaRow}>
                                                     <Col>
-                                                        <a href={values.speaker_social_media && values.speaker_social_media.facebook_link} >
+                                                        <a href={values.speaker_social_media_links && values.speaker_social_media_links.facebook_link} >
                                                             <div className={styles.socialIconsBackground}>
                                                                 <i className="fa fa-facebook" aria-hidden="true"></i>
                                                             </div>
                                                         </a>
                                                     </Col>
                                                     <Col>
-                                                        <a href={values.speaker_social_media && values.speaker_social_media.twitter_link} >
+                                                        <a href={values.speaker_social_media_links && values.speaker_social_media_links.twitter_link} >
                                                             <div className={styles.socialIconsBackground}>
                                                                 <i className="fa fa-twitter" aria-hidden="true"></i>
                                                             </div>
                                                         </a>
                                                     </Col>
                                                     <Col>
-                                                        <a href={values.speaker_social_media && values.speaker_social_media.linkedin_link} >
+                                                        <a href={values.speaker_social_media_links && values.speaker_social_media_links.linkedin_link} >
                                                             <div className={styles.socialIconsBackground}>
                                                                 <i className="fa fa-linkedin" aria-hidden="true"></i>
                                                             </div>

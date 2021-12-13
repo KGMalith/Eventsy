@@ -5,3 +5,9 @@
   font-size: var(--app-regular-secondary-font-size);
   color: var(--app-primary-font-color);
 }
+
+.errorMsg {
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}

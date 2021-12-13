@@ -1,7 +1,12 @@
-
 .primaryLabel {
   font-family: var(--app-tertiary-font);
   font-weight: var(--app-regular-font-weight);
   font-size: var(--app-regular-secondary-font-size);
   color: var(--app-primary-font-color);
+}
+
+.errorMsg {
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
 }

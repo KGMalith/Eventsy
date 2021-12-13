@@ -1,6 +1,26 @@
 import {axiosInstance} from '../../../init';
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+export let editorGetAllPendingResearchPapers = async () => {
+    try {
+        let value = await axiosInstance.get(BASE_URL + '/editor/get-event-pending-research-papers');
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let editorGetPendingResearchPaper = async (data) => {
+    try {
+        let value = await axiosInstance.post(BASE_URL + '/editor/get-event-pending-research-paper', {
+            user_id: data
+        });
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
 export let uploadSpeakerImage = async (speaker_image, setPrecentage) => {
     const data = new FormData()
     data.append('file', speaker_image)
@@ -49,7 +69,6 @@ export let editSpeaker = async (data) => {
             speaker_first_name: data.speaker_first_name,
             speaker_last_name: data.speaker_last_name,
             speaker_affiliation: data.speaker_affiliation,
-            is_image_updating: data.is_image_updating,
             twitter_link: data.twitter_link,
             facebook_link: data.facebook_link,
             linkedin_link: data.linkedin_link,
@@ -69,7 +88,6 @@ export let editTempSpeaker = async (data) => {
             speaker_first_name: data.speaker_first_name,
             speaker_last_name: data.speaker_last_name,
             speaker_affiliation: data.speaker_affiliation,
-            is_image_updating: data.is_image_updating,
             twitter_link: data.twitter_link,
             facebook_link: data.facebook_link,
             linkedin_link: data.linkedin_link,

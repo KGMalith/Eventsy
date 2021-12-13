@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Form, Row, Col, ProgressBar } from 'react-bootstrap';
@@ -25,8 +25,6 @@ const ConferenceForm = (props) => {
         contactAddress: yup.string().trim().required('Required'),
         contactNumber: yup.number().required('Required'),
         contactEmail: yup.string().email('Invalid Email').trim().required('Required'),
-        attendeeSeat: yup.number().required('Required'),
-        researcherSeat: yup.number().required('Required'),
         speakerlist: yup.array().required('Required'),
         workshoplist: yup.array().required('Required'),
         pesentationlist: yup.array().required('Required'),
@@ -76,68 +74,74 @@ const ConferenceForm = (props) => {
                     <Form noValidate onSubmit={handleSubmit}>
                         <span className="form-action-title">Basic Details</span>
                         <hr className="horizontal-line" />
-                        <CommonTextBox
-                            controlId="conferenceName"
-                            label="Conference Name"
-                            type="text"
-                            name="conferenceName"
-                            classLabel="primaryLabel"
-                            classType="primaryTextBox"
-                            handleOnChange={handleChange}
-                            errorMessage={errors.conferenceName}
-                            isInvalid={submitCount > 0 && !!errors.conferenceName}
-                        />
-                        <Row className="mt-3">
-                            <Col>
-                                <CommonTextBox
-                                    controlId="conferenceSubTopic"
-                                    label="Conference Sub Topic"
-                                    type="text"
-                                    name="conferenceSubTopic"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.conferenceSubTopic}
-                                    isInvalid={submitCount > 0 && !!errors.conferenceSubTopic}
-                                />
-                            </Col>
-                            <Col>
-                                <CustomDropdown
-                                    controlId="conferenceType"
-                                    value={values.conferenceType}
-                                    label="Conference Type"
-                                    dropdownValues={dropValues}
-                                    name="conferenceType"
-                                    classLabel="primaryLabel"
-                                    classType="primaryDropDown"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.conferenceType}
-                                    isInvalid={submitCount > 0 && !!errors.conferenceType}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mt-3">
-                            <Col>
-                                <CustomMultiDate
-                                    label="Conference Days"
-                                    onChange={(e) => { setFieldValue("conferenceDays", e)}}
-                                    value={values.conferenceDays}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="confereceOrganizer"
-                                    label="Conference Organizer"
-                                    type="text"
-                                    name="confereceOrganizer"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.confereceOrganizer}
-                                    isInvalid={submitCount > 0 && !!errors.confereceOrganizer}
-                                />
-                            </Col>
-                        </Row>
+                        <Col>
+                            <CommonTextBox
+                                controlId="conferenceName"
+                                label="Conference Name"
+                                type="text"
+                                name="conferenceName"
+                                classLabel="primaryLabel"
+                                classType="primaryTextBox"
+                                handleOnChange={handleChange}
+                                errorMessage={errors.conferenceName}
+                                isInvalid={submitCount > 0 && !!errors.conferenceName}
+                            />
+                        </Col>
+                        <Col className="mt-3">
+                            <Row>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="conferenceSubTopic"
+                                        label="Conference Sub Topic"
+                                        type="text"
+                                        name="conferenceSubTopic"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.conferenceSubTopic}
+                                        isInvalid={submitCount > 0 && !!errors.conferenceSubTopic}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CustomDropdown
+                                        controlId="conferenceType"
+                                        value={values.conferenceType}
+                                        label="Conference Type"
+                                        dropdownValues={dropValues}
+                                        name="conferenceType"
+                                        classLabel="primaryLabel"
+                                        classType="primaryDropDown"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.conferenceType}
+                                        isInvalid={submitCount > 0 && !!errors.conferenceType}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col className="mt-3">
+                            <Row>
+                                <Col>
+                                    <CustomMultiDate
+                                        label="Conference Days"
+                                        onChange={(e) => { setFieldValue("conferenceDays", e) }}
+                                        value={values.conferenceDays}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="confereceOrganizer"
+                                        label="Conference Organizer"
+                                        type="text"
+                                        name="confereceOrganizer"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.confereceOrganizer}
+                                        isInvalid={submitCount > 0 && !!errors.confereceOrganizer}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
                         <Col className="mt-3">
                             <Form.Group>
                                 <Form.Label className="primaryLabel">
@@ -188,152 +192,129 @@ const ConferenceForm = (props) => {
                         </Col>
                         <span className="form-action-title">Advance Details</span>
                         <hr className="horizontal-line" />
-                        <Row>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="attendeeFee"
-                                    label="Attendee Registration Fee"
-                                    type="number"
-                                    name="attendeeFee"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.attendeeFee}
-                                    isInvalid={submitCount > 0 && !!errors.attendeeFee}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="researcherFee"
-                                    label="Researcher Registration Fee"
-                                    type="number"
-                                    name="researcherFee"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.researcherFee}
-                                    isInvalid={submitCount > 0 && !!errors.researcherFee}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="workshopConductorFee"
-                                    label="Workshop Conductor Registration Fee"
-                                    type="number"
-                                    name="workshopConductorFee"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.workshopConductorFee}
-                                    isInvalid={submitCount > 0 && !!errors.workshopConductorFee}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mt-3">
-                            <Col>
-                                <CommonTextBox
-                                    controlId="contactAddress"
-                                    label="Contact Address"
-                                    type="text"
-                                    name="contactAddress"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.contactAddress}
-                                    isInvalid={submitCount > 0 && !!errors.contactAddress}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="contactNumber"
-                                    label="Contact Number"
-                                    type="number"
-                                    name="contactNumber"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.contactNumber}
-                                    isInvalid={submitCount > 0 && !!errors.contactNumber}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="contactEmail"
-                                    label="Contact Email"
-                                    type="email"
-                                    name="contactEmail"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.contactEmail}
-                                    isInvalid={submitCount > 0 && !!errors.contactEmail}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mt-3">
-                            <Col>
-                                <CommonTextBox
-                                    controlId="attendeeSeat"
-                                    label="Attendee Seat Capacity"
-                                    type="number"
-                                    name="attendeeSeat"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.attendeeSeat}
-                                    isInvalid={submitCount > 0 && !!errors.attendeeSeat}
-                                />
-                            </Col>
-                            <Col>
-                                <CommonTextBox
-                                    controlId="researcherSeat"
-                                    label="Researcher Seat Capacity"
-                                    type="number"
-                                    name="researcherSeat"
-                                    classLabel="primaryLabel"
-                                    classType="primaryTextBox"
-                                    handleOnChange={handleChange}
-                                    errorMessage={errors.researcherSeat}
-                                    isInvalid={submitCount > 0 && !!errors.researcherSeat}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mt-3 mb-4">
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label className="primaryLabel">
-                                        Workshops
-                                    </Form.Label>
-                                    <div>
-                                        <Select 
-                                            components={animatedComponents}
-                                            styles={customStyles}
-                                            isMulti
-                                            options={props.workshops}
-                                            onChange={(e) => setFieldValue('workshoplist',e)}
-                                        />
-                                    </div>
-                                </Form.Group>
-                                
-                            </Col>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label className="primaryLabel">
-                                        Research Paper Presentations
-                                    </Form.Label>
-                                    <div>
-                                        <Select 
-                                            components={animatedComponents}
-                                            styles={customStyles}
-                                            isMulti
-                                            options={props.presentations}
-                                            onChange={(e) => setFieldValue('pesentationlist', e)}
-                                        />
-                                    </div>
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="attendeeFee"
+                                        label="Attendee Registration Fee"
+                                        type="number"
+                                        name="attendeeFee"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.attendeeFee}
+                                        isInvalid={submitCount > 0 && !!errors.attendeeFee}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="researcherFee"
+                                        label="Researcher Registration Fee"
+                                        type="number"
+                                        name="researcherFee"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.researcherFee}
+                                        isInvalid={submitCount > 0 && !!errors.researcherFee}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="workshopConductorFee"
+                                        label="Workshop Conductor Registration Fee"
+                                        type="number"
+                                        name="workshopConductorFee"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.workshopConductorFee}
+                                        isInvalid={submitCount > 0 && !!errors.workshopConductorFee}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col className="mt-3">
+                            <Row>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="contactAddress"
+                                        label="Contact Address"
+                                        type="text"
+                                        name="contactAddress"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.contactAddress}
+                                        isInvalid={submitCount > 0 && !!errors.contactAddress}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="contactNumber"
+                                        label="Contact Number"
+                                        type="number"
+                                        name="contactNumber"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.contactNumber}
+                                        isInvalid={submitCount > 0 && !!errors.contactNumber}
+                                    />
+                                </Col>
+                                <Col>
+                                    <CommonTextBox
+                                        controlId="contactEmail"
+                                        label="Contact Email"
+                                        type="email"
+                                        name="contactEmail"
+                                        classLabel="primaryLabel"
+                                        classType="primaryTextBox"
+                                        handleOnChange={handleChange}
+                                        errorMessage={errors.contactEmail}
+                                        isInvalid={submitCount > 0 && !!errors.contactEmail}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col className="mt-3 mb-4">
+                            <Row>
+                                <Col>
+                                    <Form.Group>
+                                        <Form.Label className="primaryLabel">
+                                            Workshops
+                                        </Form.Label>
+                                        <div>
+                                            <Select
+                                                components={animatedComponents}
+                                                styles={customStyles}
+                                                isMulti
+                                                options={props.workshops}
+                                                onChange={(e) => setFieldValue('workshoplist', e)}
+                                            />
+                                        </div>
+                                    </Form.Group>
 
+                                </Col>
+                                <Col>
+                                    <Form.Group>
+                                        <Form.Label className="primaryLabel">
+                                            Research Paper Presentations
+                                        </Form.Label>
+                                        <div>
+                                            <Select
+                                                components={animatedComponents}
+                                                styles={customStyles}
+                                                isMulti
+                                                options={props.presentations}
+                                                onChange={(e) => setFieldValue('pesentationlist', e)}
+                                            />
+                                        </div>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                        </Col>
                         <span className="form-action-title">Location Details</span>
                         <hr className="horizontal-line" />
                         <Col>
