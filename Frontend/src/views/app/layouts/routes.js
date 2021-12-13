@@ -42,7 +42,8 @@ import ViewRequestedWorkshops from '../usersViews/company-users/admin/workshops/
 import ViewRequestedWorkshop from '../usersViews/company-users/admin/workshops/view requested workshop/view requested workshop';
 import UserProfile from '../usersViews/common-views/user profile';
 import ConferencePreview from '../usersViews/common-views/conference preview';
-import ViewPendingWorkshopRequests from '../usersViews/company-users/editor/workshop/viewPendingRequests';
+import ViewPendingWorkshopRequests from '../usersViews/company-users/editor/workshop/view pending requests';
+import ViewPendingPresentationRequests from '../usersViews/company-users/editor/presentation/view pending requests';
 
 
 const routes = [
@@ -58,6 +59,7 @@ const routes = [
     { path: '/app/editor-pending-speakers/:id', component:  EditPendingSpeaker , exact: true },
     { path: '/app/editor-speakers', component:  ViewSpeakers , exact: true },
     { path: '/app/editor-speakers/:id', component: EditSpeaker , exact: true },
+    { path: '/app/editor-view-requested-presentation', component: ViewPendingPresentationRequests, exact: true },
     { path: '/app/editor-create-presentation', component:  CreatePresentation , exact: true },
     { path: '/app/editor-view-pending-presentations', component: ViewPendingPresentations , exact: true },
     { path: '/app/editor-view-pending-presentations/:id', component:  EditPendingPresentation , exact: true },

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { CustomButton } from '../../../../../../../components/buttons';
 import styles from './viewRequestedConferences.module.css';
-import { toast } from 'react-toastify';
 import moment from 'moment';
 // import { getPendingConference } from '../../../../../../../util/admin';
 

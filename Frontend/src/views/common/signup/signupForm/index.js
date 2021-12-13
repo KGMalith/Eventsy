@@ -7,7 +7,7 @@ import './signupForm.scss';
 import { CommonTextBox } from '../../../../components/input-text';
 import { CustomButton } from '../../../../components/buttons';
 import { CustomDropdown } from '../../../../components/select';
-import {userTitleValues} from '../../../../components/common-data-array';
+import { userTitleValues } from '../../../../components/common-data-array';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import FileUploadBox from '../../../../components/upload-box';
@@ -51,10 +51,10 @@ export default function SignupForm(props) {
         setUserType(value)
     }
 
-    const deleteUploadedFiles = (files, index, setFieldValue)=>{
+    const deleteUploadedFiles = (files, index, setFieldValue) => {
         files.splice(index, 1);
         setFieldValue('uploadfiles', files);
-        props.setURL({ fileURL:''});
+        props.setURL({ fileURL: '' });
     }
 
     return (
@@ -200,45 +200,44 @@ export default function SignupForm(props) {
                         </div>
                         {(userType === 1 || userType === 2) &&
                             <div className="mt-4">
-                                <Col>
-                                    <FileUploadBox
-                                        isMultiUpload={false}
-                                        maxFileSize={10485760}
-                                        acceptFileTypes={"application/pdf"}
-                                        viewBoxIcon={<i className="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i>}
-                                        uploadFileTopic={userType === 1 ? 'Upload Research Paper' : userType === 2 ? 'Upload Workshop Proposal' : ''}
-                                        onlyAcceptedFileTypesLabel={'Only pdf files will be accepted'}
-                                        maximumFileSizeInMBLabel={'10'}
-                                        setFieldValue={setFieldValue}
-                                        uploadFiles={props.uploadFiles}
-                                        userType={userType}
-                                        name='uploadfiles'
-                                        errorMessage={submitCount > 0 && errors.uploadfiles}
-                                        isInvalid={(submitCount > 0 && errors.uploadfiles) ? true : false}
-                                    />
-                                    <div>
-                                        {
-                                            values.uploadfiles && values.uploadfiles.map((file, index) => (
-                                                <Alert key={index} variant={'light'} className='successAlert'>
-                                                    <Row>
+
+                                <FileUploadBox
+                                    isMultiUpload={false}
+                                    maxFileSize={10485760}
+                                    acceptFileTypes={"application/pdf"}
+                                    viewBoxIcon={<i className="fa fa-file-pdf-o fa-4x" aria-hidden="true"></i>}
+                                    uploadFileTopic={userType === 1 ? 'Upload Research Paper' : userType === 2 ? 'Upload Workshop Proposal' : ''}
+                                    onlyAcceptedFileTypesLabel={'Only pdf files will be accepted'}
+                                    maximumFileSizeInMBLabel={'10'}
+                                    setFieldValue={setFieldValue}
+                                    uploadFiles={props.uploadFiles}
+                                    userType={userType}
+                                    name='uploadfiles'
+                                    errorMessage={submitCount > 0 && errors.uploadfiles}
+                                    isInvalid={(submitCount > 0 && errors.uploadfiles) ? true : false}
+                                />
+                                <div>
+                                    {
+                                        values.uploadfiles && values.uploadfiles.map((file, index) => (
+                                            <Alert key={index} variant={'light'} className='successAlert'>
+                                                <Row>
+                                                    <Col>
+                                                        {file.name}
+                                                    </Col>
+                                                    {props.isFilesUploading ?
                                                         <Col>
-                                                            {file.name}
+                                                            <span className='float-end'>{props.uploadPrecentage + '%'}&nbsp;&nbsp;&nbsp;<i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i></span>
                                                         </Col>
-                                                        {props.isFilesUploading ?
-                                                            <Col>
-                                                                <span className='float-end'>{props.uploadPrecentage + '%'}&nbsp;&nbsp;&nbsp;<i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i></span>
-                                                            </Col>
-                                                            :
-                                                            <Col sm={2} className='deleteIcon'>
-                                                                <i className="fa fa-trash-o" aria-hidden="true" onClick={() => deleteUploadedFiles(values.uploadfiles, index, setFieldValue)}></i>
-                                                            </Col>
-                                                        }
-                                                    </Row>
-                                                </Alert>
-                                            ))
-                                        }
-                                    </div>
-                                </Col>
+                                                        :
+                                                        <Col sm={2} className='deleteIcon'>
+                                                            <i className="fa fa-trash-o" aria-hidden="true" onClick={() => deleteUploadedFiles(values.uploadfiles, index, setFieldValue)}></i>
+                                                        </Col>
+                                                    }
+                                                </Row>
+                                            </Alert>
+                                        ))
+                                    }
+                                </div>
                             </div>
                         }
                         <Row className="mt-4">
@@ -247,8 +246,8 @@ export default function SignupForm(props) {
                                     classType="regularCardBtn"
                                     buttonType="submit"
                                     label="SIGNUP"
-                                    buttonDisabled={props.isLoading === true?true:false}
-                                    backicon={props.isLoading === true ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>:null}
+                                    buttonDisabled={props.isLoading === true ? true : false}
+                                    backicon={props.isLoading === true ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> : null}
                                 />
                             </Col>
                         </Row>

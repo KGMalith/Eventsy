@@ -1,0 +1,222 @@
+.loaderComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+
+.researchPresentationCard {
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.headerBackground {
+  height: 100px;
+  background: #d35f5f;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.researcherImage {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 7px solid rgba(253, 251, 251, 0.37);
+  margin-top: -80px;
+}
+
+.researcherName {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: 22px;
+  color: var(--app-primary-font-color);
+  text-align: center;
+  margin-top: 4%;
+  margin-bottom: 0px;
+}
+
+.researcherEmail {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: #878787;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.researcherAffiliation {
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: #878787;
+  text-align: center;
+}
+
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  i {
+    color: #878787;
+  }
+}
+
+.emptyMessage {
+  text-align: center;
+  font-family: var(--app-secondary-font);
+  font-weight: var(--app-bold-font-weight);
+  font-size: var(--app-medium-font-size);
+  color: #878787;
+}
+
+.MainMessageComponent {
+  height: 80vh;
+  position: relative;
+}
+
+.innerMessageComponent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.actionCard {
+  background: #ffffff;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.actionCardBody {
+  padding: 0.5rem;
+}
+
+.researcherImage2 {
+  position: relative;
+  display: block;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 7px solid rgba(253, 251, 251, 0.37);
+}
+
+.cvViewCard {
+  border: 1px solid var(--app-cards-primary-border-color);
+  border-radius: 6px;
+  margin-right: -0.5px;
+  margin-top: -0.5px;
+  margin-left: -0.5px;
+}
+
+.cardHeader {
+  background: #323639;
+  font-family: var(--app-primary-font);
+  font-weight: var(--app-regular-font-weight);
+  font-size: var(--app-regular-font-size);
+  color: var(--app-secondary-font-color) !important;
+  margin-right: -0.5px;
+  margin-bottom: 0px !important;
+  border: none;
+}
+
+.headerDetails {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+}
+
+.accordianHeaderTopic {
+  margin-bottom: 0px;
+  flex: 1;
+}
+
+.pdfcomponentActions {
+  display: flex;
+  flex-basis: auto;
+}
+
+.cvZoomcomponent {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+}
+.zoomOutBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-end: 10px;
+  line-height: 1;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.zoomBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-start: 10px;
+  line-height: 1;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.pageChangerComponent {
+  display: flex;
+  align-items: center;
+  margin-inline-start:50px;
+  flex-basis: auto;
+}
+
+.pageNextBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-start: 10px;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.pagePreviousBtn {
+  border-radius: 6px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 5px 5px;
+  margin-inline-end: 10px;
+  &:hover {
+    background: rgba(209, 206, 206, 0.3) !important;
+  }
+}
+
+.cvViewBody {
+  height: 600px;
+  background: #525659;
+  overflow: auto;
+}
+
+@media (max-width: 480px) {
+  .loaderComponent {
+    margin-top: 25%;
+  }
+}

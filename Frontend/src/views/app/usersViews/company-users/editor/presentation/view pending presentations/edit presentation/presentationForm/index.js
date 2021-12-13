@@ -47,29 +47,31 @@ const PresentationForm = (props) => {
                         values
                     }) => (
                         <Form noValidate onSubmit={handleSubmit}>
-                            <Row>
-                                <Col>
-                                    <CommonTextBox
-                                        controlId="topic"
-                                        label="Presentation Topic"
-                                        type="text"
-                                        name="topic"
-                                        classLabel="primaryLabel"
-                                        value={values.topic}
-                                        classType="primaryTextBox"
-                                        handleOnChange={handleChange}
-                                        errorMessage={errors.topic}
-                                        isInvalid={submitCount > 0 && !!errors.topic}
-                                    />
-                                </Col>
-                                <Col>
-                                    <CustomDateTime
-                                        label="Presentation Date & Time"
-                                        onChange={(e) => { onChange(e); setFieldValue('dateTime', e) }}
-                                        value={values.dateTime}
-                                    />
-                                </Col>
-                            </Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <CommonTextBox
+                                            controlId="topic"
+                                            label="Presentation Topic"
+                                            type="text"
+                                            name="topic"
+                                            classLabel="primaryLabel"
+                                            value={values.topic}
+                                            classType="primaryTextBox"
+                                            handleOnChange={handleChange}
+                                            errorMessage={errors.topic}
+                                            isInvalid={submitCount > 0 && !!errors.topic}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <CustomDateTime
+                                            label="Presentation Date & Time"
+                                            onChange={(e) => { onChange(e); setFieldValue('dateTime', e) }}
+                                            value={values.dateTime}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
                             <Col className="mt-3">
                                 <Form.Group>
                                     <Form.Label className="primaryLabel">
@@ -80,7 +82,7 @@ const PresentationForm = (props) => {
                                             defaultValue={values.speaker}
                                             components={animatedComponents}
                                             styles={customStyles}
-                                            options={props.speakers}
+                                            options={props.speakersList}
                                             name="speaker"
                                             onChange={(e) => setFieldValue('speaker', e)}
                                         />

@@ -45,7 +45,7 @@ export class ViewPendingWorkshops extends Component {
                         <Row>
                             {this.state.workshop_data_set && this.state.workshop_data_set.length > 0 &&
                                 this.state.workshop_data_set.map((values, idx) => (
-                                    <div className="col-md-6" key={idx} onClick={() => this.showWorkshop(values._id)}>
+                                    <div className="col-md-6" key={idx} onClick={() => this.showWorkshop(values.workshop_id)}>
                                         <div className={`card ${styles.workshopCard}`}>
                                             <div className="card-body">
                                                 <div className={styles.eventTitle}>

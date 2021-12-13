@@ -45,7 +45,7 @@ export class ViewPendingPresentations extends Component {
                         <Row>
                             {this.state.presentation_data_set && ((this.state.presentation_data_set).length > 0) &&
                                 (this.state.presentation_data_set).map((result, idx) => (
-                                    <div className="col-md-6" key={idx} onClick={() => this.showPresentation(result._id)}>
+                                    <div className="col-md-6" key={idx} onClick={() => this.showPresentation(result.presentation_id)}>
                                         <div className={`card ${styles.presentationCard}`}>
                                             <div className="card-body">
                                                 <div className={styles.eventTitle}>
@@ -62,7 +62,7 @@ export class ViewPendingPresentations extends Component {
                                                             </span>
                                                             <div className={styles.eventDetailsBox}>
                                                                 <span className={styles.eventLabel}>Speaker</span>
-                                                                <p className={styles.eventValue}>{result.presentation_conductor && `${result.presentation_conductor.speaker_title} ${result.presentation_conductor.speaker_first_name} ${result.presentation_conductor.speaker_last_name}`}</p>
+                                                                <p className={styles.eventValue}>{result.presentation_conductor}</p>
                                                             </div>
                                                         </div>
                                                     </div>

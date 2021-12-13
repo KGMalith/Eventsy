@@ -24,6 +24,7 @@ export let editorGetPendingWorkshopProposal = async (data) => {
 export let createWorkshop = async (dataSet) => {
     try {
         let value = await axiosInstance.post(BASE_URL + '/editor/create-workshop', {
+            workshop_conductor_id: dataSet.workshop_conductor,
             speakers_id_list: dataSet.speakers_id_list,
             workshop_name: dataSet.workshop_name,
             workshop_description: dataSet.workshop_description,
@@ -108,6 +109,15 @@ export let getWorkshop = async (data) => {
 export let getAllRequestedWorkshopConductors = async () => {
     try {
         let value = await axiosInstance.get(BASE_URL + '/editor/get-all-requested-workshop-conductors');
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getAllWorkshopsList = async () => {
+    try {
+        let value = await axiosInstance.get(BASE_URL + '/editor/get-all-workshops-list');
         return value;
     } catch (error) {
         return error;

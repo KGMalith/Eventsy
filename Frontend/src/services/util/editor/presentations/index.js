@@ -19,7 +19,6 @@ export let editPresentation = async (dataSet) => {
     try {
         let value = await axiosInstance.post(BASE_URL + '/editor/edit-presentation', {
             presentation_id: dataSet.presentation_id,
-            speaker_id: dataSet.speaker_id,
             presentation_topic: dataSet.presentation_topic,
             presentation_description: dataSet.presentation_description,
             presentation_date_and_time: dataSet.presentation_date_and_time,
@@ -34,7 +33,6 @@ export let editPendingPresentation = async (dataSet) => {
     try {
         let value = await axiosInstance.post(BASE_URL + '/editor/edit-temp-presentation', {
             presentation_id: dataSet.presentation_id,
-            speaker_id: dataSet.speaker_id,
             presentation_topic: dataSet.presentation_topic,
             presentation_description: dataSet.presentation_description,
             presentation_date_and_time: dataSet.presentation_date_and_time,
@@ -80,6 +78,15 @@ export let getPresentation = async (data) => {
         let value = await axiosInstance.post(BASE_URL + '/editor/get-single-presentation', {
             presentation_id: data
         });
+        return value;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getAllPresentationsList = async () => {
+    try {
+        let value = await axiosInstance.get(BASE_URL + '/editor/get-all-presentation-list');
         return value;
     } catch (error) {
         return error;

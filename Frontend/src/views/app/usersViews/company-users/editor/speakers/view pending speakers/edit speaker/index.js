@@ -38,7 +38,6 @@ export class EditSpeaker extends Component {
             speaker_first_name: value.firstName,
             speaker_last_name: value.lastName,
             speaker_affiliation: value.affiliation,
-            is_image_updating: value.isImageUpdating,
             twitter_link: value.twitterLink,
             facebook_link: value.facebookLink,
             linkedin_link: value.linkedinLink,
