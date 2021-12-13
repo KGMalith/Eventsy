@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Col, Container } from 'react-bootstrap';
-import { getAllRequestedWorkshopConductors } from '../../../../../../../services/util/editor/workshops';
+import { createWorkshop, getAllRequestedWorkshopConductors } from '../../../../../../../services/util/editor/workshops';
 import { getAllSpeakersList } from '../../../../../../../services/util/editor/speakers';
 import styles from './createWorkshop.module.scss';
 import WorkshopForm from './workshopForm';
@@ -20,44 +20,27 @@ export class CreateWorkshop extends Component {
     }
 
     async submitForm(value, { resetForm }) {
-        //     this.setState({ isSubmitLoading: true });
-        //     let speakersArray = [];
-        //     for (let index = 0; index < (value.speaker).length; index++) {
-        //         speakersArray.push((value.speaker)[index].value);
-        //     }
-        //     let data = {
-        //         speakers_id_list: speakersArray,
-        //         workshop_name: value.workshopName,
-        //         workshop_description: value.workshopDesc,
-        //         workshop_date_and_time: value.dateTime
-        //     };
+            this.setState({ isSubmitLoading: true });
+            let speakersArray = [];
+            for (let index = 0; index < (value.speaker).length; index++) {
+                speakersArray.push((value.speaker)[index].value);
+            }
+            let data = {
+                speakers_id_list: speakersArray,
+                workshop_name: value.workshopName,
+                workshop_description: value.workshopDesc,
+                workshop_date_and_time: value.dateTime,
+                workshop_conductor: value.workshopConductor
+            };
 
-        //     let respond = await ceateWorkshop(data);
-        //     if(respond.success === true){
-        //         resetForm({});
-        //         toast.success(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
-        //             position: "top-right",
-        //             autoClose: 2500,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //         });
-        //         this.setState({ isSubmitLoading: false });
-        //     }else{
-        //         toast.error(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
-        //             position: "top-right",
-        //             autoClose: 2500,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //         });
-        //         this.setState({ isSubmitLoading: false });
-        //     }
-
+            let respond = await createWorkshop(data);
+            if(respond.success === true){
+                resetForm({});
+                this.props.history.go(0);
+                this.setState({ isSubmitLoading: false });
+            }else{
+                this.setState({ isSubmitLoading: false });
+            }
     }
 
     componentDidMount() {

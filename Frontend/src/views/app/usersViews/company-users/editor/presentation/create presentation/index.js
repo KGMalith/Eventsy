@@ -29,6 +29,7 @@ export class CreatePresentation extends Component {
         let respond = await ceatePresentation(data);
         if (respond.success === true){
             resetForm({});
+            this.props.history.go(0);
             this.setState({ isSubmitLoading: false });
         }else{
             this.setState({ isSubmitLoading: false });

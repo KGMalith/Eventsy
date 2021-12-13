@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Col, Container } from 'react-bootstrap';
 import { Loader } from '../../../../../../../../components/loader/loader';
-import { editConference, getAllPresentationsForConference, getAllSpeakersForConference, getAllWorkshopsForConference, getConference, uploadConferenceImagesList, uploadConferenceLocationImages } from '../../../../../../../../services/util/editor/conference';
+import { editConference, getConference, uploadConferenceImagesList, uploadConferenceLocationImages } from '../../../../../../../../services/util/editor/conference';
+import { getAllPresentationsList } from '../../../../../../../../services/util/editor/presentations';
+import { getAllSpeakersList } from '../../../../../../../../services/util/editor/speakers';
+import { getAllWorkshopsList } from '../../../../../../../../services/util/editor/workshops';
 import ConferenceForm from './conferenceForm';
 import styles from './editConference.module.scss';
 
@@ -22,7 +25,6 @@ export class EditConference extends Component {
                 conference_days: {},
                 registration_fees: {},
                 contact_details: {},
-                seat_capacity: {},
                 conference_location: {}
             },
             conference_image_urls: [],
@@ -83,13 +85,11 @@ export class EditConference extends Component {
             conference_location_name: value.locationName,
             conference_location_desc: value.locationDesc,
             conference_location_google_map_link: value.locationLink,
-            is_conference_location_images_updating: value.isLocationImageUpdating,
             conference_location_images_array: this.state.location_image_urls,
             conference_start_date: value.conferenceDays[0],
             conference_end_date: value.conferenceDays[1],
             conference_organizer: value.confereceOrganizer,
             conference_about: value.conferenceAbout,
-            is_conference_images_updating: value.isConferenceImageUpdating,
             conference_images_array: this.state.conference_image_urls,
             attendee_registration_fee: value.attendeeFee,
             researcher_registration_fee: value.researcherFee,
@@ -97,8 +97,6 @@ export class EditConference extends Component {
             contact_address: value.contactAddress,
             contact_number: value.contactNumber,
             contact_email: value.contactEmail,
-            attendee_seat_capacity: value.attendeeSeat,
-            researcher_seat_capacity: value.researcherSeat,
             key_note_speakers: speaker_object_array,
             conference_workshops: workshop_object_array,
             conference_reserch_paper_presentations: presentation_object_array
@@ -116,9 +114,9 @@ export class EditConference extends Component {
     componentDidMount() {
         const getAllData = async () => {
             this.setState({ is_page_loading: true })
-            let respondWorkshop = await getAllWorkshopsForConference();
-            let respondPresentation = await getAllPresentationsForConference();
-            let respondSpeakers = await getAllSpeakersForConference();
+            let respondWorkshop = await getAllWorkshopsList();
+            let respondPresentation = await getAllPresentationsList();
+            let respondSpeakers = await getAllSpeakersList();
             let respondConference = await getConference(this.props.match.params.id);
 
             if (respondWorkshop.success === true && respondPresentation.success === true && respondSpeakers.success === true && respondConference.success === true) {

@@ -371,6 +371,13 @@ export class SideBar extends Component {
                                     </div>
                                 </a>
                                 <ul className="sideNavBarDopdown">
+                                    <NavLink to="/app/editor-view-requested-presentation" activeClassName="active-nav">
+                                        <div className="sidebar-menu-sub">
+                                            <span>
+                                                Requested Presentations
+                                            </span>
+                                        </div>
+                                    </NavLink>
                                     <NavLink to="/app/editor-create-presentation" activeClassName="active-nav">
                                         <div className="sidebar-menu-sub">
                                             <span>

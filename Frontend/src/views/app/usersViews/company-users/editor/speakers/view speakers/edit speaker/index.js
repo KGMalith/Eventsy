@@ -41,7 +41,6 @@ export class EditSpeaker extends Component {
             twitter_link: value.twitterLink,
             facebook_link: value.facebookLink,
             linkedin_link: value.linkedinLink,
-            is_image_updating: value.isImageUpdating,
             image_link: this.state.speaker_image_url
         }
 

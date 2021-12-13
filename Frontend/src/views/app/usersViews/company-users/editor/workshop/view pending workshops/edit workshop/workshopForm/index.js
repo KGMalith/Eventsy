@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Form, Row, Col } from 'react-bootstrap';
@@ -15,20 +15,9 @@ const WorkshopForm = (props) => {
     const schema = yup.object({
         workshopName: yup.string().trim().required('Required'),
         workshopDesc: yup.string().trim().required('Required'),
+        speaker: yup.array().of(yup.object().shape({ label: yup.string(), value: yup.string() })).required('Required').nullable()
     });
     const animatedComponents = makeAnimated();
-
-    const customStyles = {
-        control: (base, state) => ({
-            ...base,
-            '&:hover': { borderColor: '#86b7fe' },
-            '&:focus': { borderColor: '#86b7fe' }, // border style on hover
-            border: '1px solid var(--app-primary-border-color)', // default border color
-            borderRadius: '0.25rem',
-            boxShadow: 'none', // no box-shadow
-        })
-    }
-
 
     return (
         <div>
@@ -48,29 +37,31 @@ const WorkshopForm = (props) => {
                         values
                     }) => (
                         <Form noValidate onSubmit={handleSubmit}>
-                            <Row>
-                                <Col>
-                                    <CommonTextBox
-                                        controlId="workshopName"
-                                        label="Workshop Name"
-                                        type="text"
-                                        name="workshopName"
-                                        classLabel="primaryLabel"
-                                        classType="primaryTextBox"
-                                        value={values.workshopName}
-                                        handleOnChange={handleChange}
-                                        errorMessage={errors.workshopName}
-                                        isInvalid={submitCount > 0 && !!errors.workshopName}
-                                    />
-                                </Col>
-                                <Col>
-                                    <CustomDateTime
-                                        label="Workshop Date & Time"
-                                        onChange={(e) => { setFieldValue('dateTime', e) }}
-                                        value={values.dateTime}
-                                    />
-                                </Col>
-                            </Row>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <CommonTextBox
+                                            controlId="workshopName"
+                                            label="Workshop Name"
+                                            type="text"
+                                            name="workshopName"
+                                            classLabel="primaryLabel"
+                                            classType="primaryTextBox"
+                                            value={values.workshopName}
+                                            handleOnChange={handleChange}
+                                            errorMessage={errors.workshopName}
+                                            isInvalid={submitCount > 0 && !!errors.workshopName}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <CustomDateTime
+                                            label="Workshop Date & Time"
+                                            onChange={(e) => { setFieldValue('dateTime', e) }}
+                                            value={values.dateTime}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
                             <Col className="mt-3">
                                 <CustomTextArea
                                     controlId="workshopDesc"
@@ -93,11 +84,34 @@ const WorkshopForm = (props) => {
                                         <Select
                                             defaultValue={values.speaker}
                                             components={animatedComponents}
-                                            styles={customStyles}
                                             isMulti
                                             options={props.speakersList}
                                             onChange={(e) => setFieldValue('speaker', e)}
+                                            styles={
+                                                errors.speaker === 'Required' ?
+                                                    {
+                                                        control: (base, state) => ({
+                                                            ...base,
+                                                            '&:hover': { borderColor: '#dc3545' }, // border style on hover
+                                                            border: '1px solid #dc3545', // default border color
+                                                            borderRadius: '0.25rem',
+                                                            boxShadow: 'none', // no box-shadow
+                                                        })
+                                                    }
+                                                    :
+                                                    {
+                                                        control: (base, state) => ({
+                                                            ...base,
+                                                            '&:hover': { borderColor: '#86b7fe' },
+                                                            '&:focus': { borderColor: '#86b7fe' }, // border style on hover
+                                                            border: '1px solid var(--app-primary-border-color)', // default border color
+                                                            borderRadius: '0.25rem',
+                                                            boxShadow: 'none', // no box-shadow
+                                                        })
+                                                    }
+                                            }
                                         />
+                                        <p className="errorMsg">{errors.speaker}</p>
                                     </div>
                                 </Form.Group>
                             </Col>
@@ -106,8 +120,8 @@ const WorkshopForm = (props) => {
                                     classType="formSubmitBtn"
                                     buttonType="submit"
                                     label="Submit"
-                                    buttonDisabled={props.isLoading === true ? true : false}
-                                    backicon={props.isLoading === true ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> : null}
+                                    buttonDisabled={props.isLoading ? true : false}
+                                    backicon={props.isLoading ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> : null}
                                 />
                             </Col>
                         </Form>

@@ -93,7 +93,7 @@ export class ViewPendingConferences extends Component {
                                                             </span>
                                                             <div className={styles.eventDetailsBox}>
                                                                 <span className={styles.eventLabel}>Location</span>
-                                                                <p className={styles.eventValue}>{values.conference_location && values.conference_location.location_name}</p>
+                                                                <p className={styles.eventValue}>{values.conference_location_name}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -115,7 +115,7 @@ export class ViewPendingConferences extends Component {
                                                             classType="tertiaryBtn"
                                                             buttonType="button"
                                                             label="Preview"
-                                                            handleClick={() => this.previewConference(values._id)}
+                                                            handleClick={() => this.previewConference(values.conference_id)}
                                                         />
                                                     </div>
                                                     <div className="col">
@@ -123,7 +123,7 @@ export class ViewPendingConferences extends Component {
                                                             classType="feeCardBtn"
                                                             buttonType="button"
                                                             label="Edit"
-                                                            handleClick={() => this.editConference(values._id)}
+                                                            handleClick={() => this.editConference(values.conference_id)}
                                                         />
                                                     </div>
                                                 </div>

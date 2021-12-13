@@ -23,14 +23,14 @@ export class EditPendingPresentation extends Component {
         this.setState({ isSubmitLoading: true });
         let data = {
             presentation_id: this.props.match.params.id,
-            speaker_id: value.speaker.value,
             presentation_topic: value.topic,
             presentation_description: value.presentationDesc,
             presentation_date_and_time: value.dateTime,
         }
         let respond = await editPendingPresentation(data);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ isSubmitLoading: false });
+            this.props.history.push('/app/editor-view-pending-presentations');
         } else {
             this.setState({ isSubmitLoading: false });
         }

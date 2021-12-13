@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Card, Col, Container } from 'react-bootstrap';
 import { Loader } from '../../../../../../../../components/loader/loader';
 import {editPendingConference, getAllPresentationsForConference, getAllSpeakersForConference, getAllWorkshopsForConference, getPendingConference, uploadConferenceImagesList, uploadConferenceLocationImages } from '../../../../../../../../services/util/editor/conference';
+import { getAllPresentationsList } from '../../../../../../../../services/util/editor/presentations';
+import { getAllSpeakersList } from '../../../../../../../../services/util/editor/speakers';
+import { getAllWorkshopsList } from '../../../../../../../../services/util/editor/workshops';
 import ConferenceForm from './conferenceForm';
 import styles from './editConference.module.scss';
 
@@ -23,7 +26,6 @@ export class EditPendingConference extends Component {
                 conference_days:{},
                 registration_fees:{},
                 contact_details:{},
-                seat_capacity:{},
                 conference_location:{}
             },
             conference_image_urls: [],
@@ -98,8 +100,6 @@ export class EditPendingConference extends Component {
             contact_address: value.contactAddress,
             contact_number: value.contactNumber,
             contact_email: value.contactEmail,
-            attendee_seat_capacity: value.attendeeSeat,
-            researcher_seat_capacity: value.researcherSeat,
             key_note_speakers: speaker_object_array,
             conference_workshops: workshop_object_array,
             conference_reserch_paper_presentations: presentation_object_array
@@ -118,9 +118,9 @@ export class EditPendingConference extends Component {
     componentDidMount() {
         const getAllData = async () => {
             this.setState({ is_page_loading: true })
-            let respondWorkshop = await getAllWorkshopsForConference();
-            let respondPresentation = await getAllPresentationsForConference();
-            let respondSpeakers = await getAllSpeakersForConference();
+            let respondWorkshop = await getAllWorkshopsList();
+            let respondPresentation = await getAllPresentationsList();
+            let respondSpeakers = await getAllSpeakersList();
             let respondConference = await getPendingConference(this.props.match.params.id);
 
             if (respondWorkshop.success === true && respondPresentation.success === true && respondSpeakers.success === true && respondConference.success === true) {

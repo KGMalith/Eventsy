@@ -20,24 +20,23 @@ export class ConferencePreview extends Component {
             title_middle_Word_Set: null,
             title_final_Word_Set: null,
             conference_data_set: {
-                conference_about: '',
-                conference_days: {},
-                conference_images: [],
-                conference_location: {
-                    location_images: []
-                },
-                conference_name: '',
-                conference_organizer: '',
-                conference_sub_topic: '',
-                conference_type: '',
-                contact_details: {},
-                key_note_speakers: [],
-                registration_fees: {
-                    attendee_registration_fee: 0,
-                    researcher_registration_fee: 0,
-                    workshop_conductor_registration_fee: 0
-                },
-                seat_capacity: {}
+                conference_sub_topic:'',
+                conference_about:'',
+                conference_location_name:'',
+                conference_type:'',
+                conference_start_date:'',
+                conference_end_date:'',
+                conference_key_note_speakers:[],
+                conference_images:[],
+                conference_attendee_registration_fee:0,
+                conference_researcher_registration_fee:0,
+                conference_workshop_conductor_registration_fee:0,
+                conference_location_google_map_link:'',
+                conference_location_desc:'',
+                conference_location_images:[],
+                conference_contact_address:'',
+                conference_contact_phone_number:'',
+                conference_contact_email:''
             },
         }
     }
@@ -199,7 +198,7 @@ export class ConferencePreview extends Component {
                                         </div>
                                         <div className="col-lg-3">
                                             <h3>Where</h3>
-                                            <p>{this.state.conference_data_set.conference_location && this.state.conference_data_set.conference_location.location_name}</p>
+                                            <p>{this.state.conference_data_set.conference_location_name}</p>
                                             {this.state.conference_data_set.conference_type === 'Online' &&
                                                 <p>({this.state.conference_data_set.conference_type})</p>
                                             }
@@ -207,7 +206,7 @@ export class ConferencePreview extends Component {
                                         <div className="col-lg-3">
                                             <h3>When</h3>
                                             {
-                                                <p>{moment(this.state.conference_data_set.conference_days && this.state.conference_data_set.conference_days.start_date).format('ll')} To<br />{moment(this.state.conference_data_set.conference_days && this.state.conference_data_set.conference_days.end_date).format('ll')}</p>
+                                                <p>{moment(this.state.conference_data_set.conference_start_date).format('ll')} To<br />{moment(this.state.conference_data_set.conference_end_date).format('ll')}</p>
                                             }
 
                                         </div>
@@ -221,7 +220,7 @@ export class ConferencePreview extends Component {
                                         <p>Here are some of key noted speakers</p>
                                     </div>
                                     <Row>
-                                        {this.state.conference_data_set.key_note_speakers && (this.state.conference_data_set.key_note_speakers).map((value, idx) => (
+                                        {this.state.conference_data_set.conference_key_note_speakers && (this.state.conference_data_set.conference_key_note_speakers).map((value, idx) => (
                                             <Col md={6} lg={4} key={idx}>
                                                 <div className="speaker">
                                                     <Image src={value.speaker_image ? value.speaker_image : `${process.env.REACT_APP_BASE_URL}/images/dummy-avatar-speaker.png`} alt="Speaker" fluid />
@@ -270,7 +269,7 @@ export class ConferencePreview extends Component {
                                             <Card className="mb-5 mb-lg-0">
                                                 <Card.Body className="card-body-fees">
                                                     <h5 className="card-title text-muted text-uppercase text-center">Attendee Registration Fee</h5>
-                                                    <h6 className="card-price text-center">{this.state.conference_data_set.registration_fees.attendee_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.registration_fees.attendee_registration_fee).toFixed(2)}</h6>
+                                                    <h6 className="card-price text-center">{this.state.conference_data_set.conference_attendee_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.conference_attendee_registration_fee).toFixed(2)}</h6>
                                                     <hr />
                                                     <div className="text-center">
                                                         <CustomButton
@@ -286,7 +285,7 @@ export class ConferencePreview extends Component {
                                             <Card className="mb-5 mb-lg-0">
                                                 <Card.Body>
                                                     <h5 className="card-title text-muted text-uppercase text-center">Researcher Registration Fee</h5>
-                                                    <h6 className="card-price text-center">{this.state.conference_data_set.registration_fees.researcher_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.registration_fees.researcher_registration_fee).toFixed(2)}</h6>
+                                                    <h6 className="card-price text-center">{this.state.conference_data_set.conference_researcher_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.conference_researcher_registration_fee).toFixed(2)}</h6>
                                                     <hr />
                                                     <div className="text-center">
                                                         <CustomButton
@@ -302,7 +301,7 @@ export class ConferencePreview extends Component {
                                             <Card className="mb-5 mb-lg-0">
                                                 <Card.Body>
                                                     <h5 className="card-title text-muted text-uppercase text-center">Workshop Conductor Registration Fee</h5>
-                                                    <h6 className="card-price text-center">{this.state.conference_data_set.registration_fees.workshop_conductor_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.registration_fees.workshop_conductor_registration_fee).toFixed(2)}</h6>
+                                                    <h6 className="card-price text-center">{this.state.conference_data_set.conference_workshop_conductor_registration_fee === 0 ? 'Free' : 'RS. ' + (this.state.conference_data_set.conference_workshop_conductor_registration_fee).toFixed(2)}</h6>
                                                     <hr />
                                                     <div className="text-center">
                                                         <CustomButton
@@ -325,23 +324,23 @@ export class ConferencePreview extends Component {
                                     </div>
                                     <div className="row g-0">
                                         <div className="col-lg-6 venue-map">
-                                            <iframe src={this.state.conference_data_set.conference_location.location_google_map_link && this.state.conference_data_set.conference_location.location_google_map_link} frameBorder='0' style={{border:0}} allowFullScreen></iframe>
+                                            <iframe src={this.state.conference_data_set.conference_location_google_map_link && this.state.conference_data_set.conference_location_google_map_link} frameBorder='0' style={{border:0}} allowFullScreen></iframe>
                                         </div>
 
                                         <div className="col-lg-6 venue-info" style={{ backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/images/venue-info-bg.jpg)` }}>
                                             <div className="row justify-content-center">
                                                 <div className="col-11 col-lg-8 position-relative">
-                                                    <h3>{this.state.conference_data_set.conference_location.location_name}</h3>
-                                                    <p>{this.state.conference_data_set.conference_location.location_desc}</p>
+                                                    <h3>{this.state.conference_data_set.conference_location_name}</h3>
+                                                    <p>{this.state.conference_data_set.conference_location_desc}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {(this.state.conference_data_set.conference_location.location_images).length > 0 &&
+                                {(this.state.conference_data_set.conference_location_images).length > 0 &&
                                     <div className="container-fluid venue-gallery-container">
                                         <Row className="g-0">
-                                            {(this.state.conference_data_set.conference_location.location_images).map((value, idx) => (
+                                            {(this.state.conference_data_set.conference_location_images).map((value, idx) => (
                                                 <Col md={4} lg={3} key={idx}>
                                                     <div className="venue-gallery">
                                                         <a href={value} className="glightbox" data-gall="venue-gallery">
@@ -366,21 +365,21 @@ export class ConferencePreview extends Component {
                                             <div className="contact-address">
                                                 <i className="bi bi-geo-alt"></i>
                                                 <h3>Address</h3>
-                                                <address>{this.state.conference_data_set.contact_details.address}</address>
+                                                <address>{this.state.conference_data_set.conference_contact_address}</address>
                                             </div>
                                         </Col>
                                         <Col md={4}>
                                             <div className="contact-phone">
                                                 <i className="bi bi-geo-alt"></i>
                                                 <h3>Phone Number</h3>
-                                                <p><a>{this.state.conference_data_set.contact_details.phone_number}</a></p>
+                                                <p><a>{this.state.conference_data_set.conference_contact_phone_number}</a></p>
                                             </div>
                                         </Col>
                                         <Col md={4}>
                                             <div className="contact-email">
                                                 <i className="bi bi-geo-alt"></i>
                                                 <h3>Email</h3>
-                                                <p><a>{this.state.conference_data_set.contact_details.email}</a></p>
+                                                <p><a>{this.state.conference_data_set.conference_contact_email}</a></p>
                                             </div>
                                         </Col>
                                     </Row>
