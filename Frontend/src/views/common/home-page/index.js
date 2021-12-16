@@ -19,7 +19,7 @@ export default class Home extends Component {
 
     async loadPage() {
         // let respond = await loadmainPage();
-        // if (respond.success === true) {
+        // if (respond.success) {
         //     this.setState({ pageData: respond.data });
         // }
     }

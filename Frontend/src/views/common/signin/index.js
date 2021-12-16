@@ -18,7 +18,7 @@ export class Signin extends Component {
     async submitForm(value){
         this.setState({ isFormLoading: true });
         let respond = await signin(value.signinEmail, value.signinPassword);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ isFormLoading: false });
             this.props.history.push("/app");
         } else {

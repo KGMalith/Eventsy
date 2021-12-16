@@ -27,7 +27,7 @@ export class CreatePresentation extends Component {
             presentation_date_and_time: value.dateTime,
         }
         let respond = await ceatePresentation(data);
-        if (respond.success === true){
+        if (respond.success){
             resetForm({});
             this.props.history.go(0);
             this.setState({ isSubmitLoading: false });
@@ -40,7 +40,7 @@ export class CreatePresentation extends Component {
         const LoadSpeakers = async () => {
             this.setState({ is_page_loading: true });
             let respond = await getAllSpeakersList();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ is_page_loading: false, speakers_data_set: respond.data });
             } else {
                 this.setState({ is_page_loading: false });

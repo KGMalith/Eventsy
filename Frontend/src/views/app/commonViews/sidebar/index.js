@@ -159,33 +159,17 @@ export class SideBar extends Component {
                             </li>
 
                             <li className="sidebar-nav-title">Presentations</li>
-                            <li className={this.state.isNavbarAdminDropPresentationActive === true ? "sidebar-nav-dropdown c-show" : "sidebar-nav-dropdown"}>
-                                <a className={this.state.isNavbarAdminDropPresentationActive === true ? "sidebar-menu-link link-active " : "sidebar-menu-link"} onClick={() => this.updateDropDown(3)}>
-                                    <div className="sidebar-menu-arrow">
+                            <li>
+                                <NavLink to="/app/admin-view-requested-presentations" activeClassName="active-nav">
+                                    <div className="sidebar-menu">
                                         <span>
                                             <i className="bi bi-easel"></i>
                                         </span>
                                         <span>
-                                            Presentation
+                                            Requested Presentations
                                         </span>
                                     </div>
-                                </a>
-                                <ul className="sideNavBarDopdown">
-                                    <NavLink to="/app/admin-view-presentations" activeClassName="active-nav">
-                                        <div className="sidebar-menu-sub">
-                                            <span>
-                                                Presentations
-                                            </span>
-                                        </div>
-                                    </NavLink>
-                                    <NavLink to="/app/admin-view-requested-presentations" activeClassName="active-nav">
-                                        <div className="sidebar-menu-sub">
-                                            <span>
-                                                Requested Presentations
-                                            </span>
-                                        </div>
-                                    </NavLink>
-                                </ul>
+                                </NavLink>
                             </li>
 
                             <li className="sidebar-nav-title">Speakers</li>
@@ -198,39 +182,23 @@ export class SideBar extends Component {
                                         <span>
                                             Requested Speakers
                                         </span>
-
                                     </div>
                                 </NavLink>
                             </li>
 
                             <li className="sidebar-nav-title">Workshops</li>
-                            <li className={this.state.isNavbarAdminDropWorkshopActive === true ? "sidebar-nav-dropdown c-show" : "sidebar-nav-dropdown"}>
-                                <a className={this.state.isNavbarAdminDropWorkshopActive === true ? "sidebar-menu-link link-active " : "sidebar-menu-link"} onClick={() => this.updateDropDown(4)}>
-                                    <div className="sidebar-menu-arrow">
+                            <li>
+                                <NavLink to="/app/admin-view-requested-workshops" activeClassName="active-nav">
+                                    <div className="sidebar-menu">
                                         <span>
                                             <i className="bi bi-shop-window"></i>
                                         </span>
                                         <span>
-                                            Workshop
+                                            Requested Workshops
                                         </span>
+
                                     </div>
-                                </a>
-                                <ul className="sideNavBarDopdown">
-                                    <NavLink to="/app/admin-view-workshops" activeClassName="active-nav">
-                                        <div className="sidebar-menu-sub">
-                                            <span>
-                                                Workshops
-                                            </span>
-                                        </div>
-                                    </NavLink>
-                                    <NavLink to="/app/admin-view-requested-workshops" activeClassName="active-nav">
-                                        <div className="sidebar-menu-sub">
-                                            <span>
-                                                Requested Workshops
-                                            </span>
-                                        </div>
-                                    </NavLink>
-                                </ul>
+                                </NavLink>
                             </li>
                         </div>
                     }

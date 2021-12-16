@@ -22,7 +22,7 @@ export class AdminViewConferences extends Component {
         // let loadData = async () => {
         //     this.setState({ isPageLoading: true });
         //     let respond = await getAllConferences();
-        //     if (respond.success === true) {
+        //     if (respond.success) {
         //         this.setState({ conference_data_set: respond.data, isPageLoading: false })
         //     } else {
         //         toast.error(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
@@ -44,7 +44,7 @@ export class AdminViewConferences extends Component {
         // console.log(id)
         // this.setState({ isSubmitLoading: true });
         // let respond = await activeConference(id, state);
-        // if (respond.success === true){
+        // if (respond.success){
         //     toast.success(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
         //         position: "top-right",
         //         autoClose: 2500,

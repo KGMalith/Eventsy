@@ -8,6 +8,7 @@ import { CommonTextBox } from '../../../../../../../../../components/input-text'
 import { CustomDropdown } from '../../../../../../../../../components/select';
 import './speakerForm.scss';
 import { Loader } from '../../../../../../../../../components/loader/loader';
+import { userTitleValues } from '../../../../../../../../../components/common-data-array';
 
 const SpeakerForm = (props) => {
 
@@ -19,36 +20,6 @@ const SpeakerForm = (props) => {
         facebookLink: yup.string().url('Enter profile URL'),
         linkedinLink: yup.string().url('Enter profile URL'),
     });
-    const dropdownValues = [
-        {
-            label: 'Mr.',
-            value: 'Mr.'
-        },
-        {
-            label: 'Ms.',
-            value: 'Ms.'
-        },
-        {
-            label: 'Mrs.',
-            value: 'Mrs.'
-        },
-        {
-            label: 'Dr.',
-            value: 'Dr.'
-        },
-        {
-            label: 'Prof.',
-            value: 'Prof.'
-        },
-        {
-            label: 'Hon.',
-            value: 'Hon.'
-        },
-        {
-            label: 'St.',
-            value: 'St.'
-        },
-    ];
 
     return (
         <div>
@@ -74,7 +45,7 @@ const SpeakerForm = (props) => {
                                         <CustomDropdown
                                             controlId="speakerTitle"
                                             label="Speaker Title"
-                                            dropdownValues={dropdownValues}
+                                            dropdownValues={userTitleValues}
                                             value={values.speakerTitle}
                                             name="speakerTitle"
                                             classLabel="primaryLabel"

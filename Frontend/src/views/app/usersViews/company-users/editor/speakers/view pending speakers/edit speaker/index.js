@@ -23,7 +23,7 @@ export class EditSpeaker extends Component {
     async uploadImage(value) {
         let image = value[0];
         let respond = await uploadSpeakerImage(image, this.setState.bind(this));
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({
                 speaker_image_url: respond.data.file_path
             })
@@ -44,7 +44,7 @@ export class EditSpeaker extends Component {
             image_link: this.state.speaker_image_url
         }
         let respond = await editTempSpeaker(data);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ isSubmitLoading: false });
             this.props.history.push('/app/editor-pending-speakers');
         } else {
@@ -56,7 +56,7 @@ export class EditSpeaker extends Component {
         const LoadSpeakers = async () => {
             this.setState({ is_page_loading: true })
             let respond = await getPendingSpeaker(this.props.match.params.id);
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ is_page_loading: false, speaker_data: respond.data })
             } else {
                 this.setState({ is_page_loading: false })
