@@ -36,7 +36,7 @@ export class Signup extends Component {
             file_url:this.state.fileURL
         }
         let respond = await signUp(signupObj);
-        if (respond.success === true) {
+        if (respond.success) {
             this.props.history.push({
                 pathname: '/email-verify',
                 search: `?email=${value.signinEmail}`

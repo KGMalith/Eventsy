@@ -22,7 +22,7 @@ export class ViewConferences extends Component {
         const getAllData = async () => {
             this.setState({ is_page_loading: true })
             let respond = await getAllConferences();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({
                     conference_data_set: respond.data,
                     is_page_loading: false

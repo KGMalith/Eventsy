@@ -20,7 +20,7 @@ export class CreateSpeaker extends Component {
     async uploadImage (value){
         let image = value[0];
         let respond = await uploadSpeakerImage(image, this.setState.bind(this));
-        if (respond.success === true){
+        if (respond.success){
             this.setState({
                 speaker_image_url: respond.data.file_path
             })
@@ -40,7 +40,7 @@ export class CreateSpeaker extends Component {
             image_link: this.state.speaker_image_url
         }
         let respond = await ceateSpeaker(data);
-        if (respond.success === true) {
+        if (respond.success) {
             resetForm({});
             this.setState({ isSubmitLoading: false });
         } else {

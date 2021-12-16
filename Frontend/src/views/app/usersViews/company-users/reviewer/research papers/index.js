@@ -18,7 +18,7 @@ export class ResearchPapers extends Component {
         const LoadSpeakers = async () => {
             this.setState({ is_page_loading: true })
             let respond = await reviewerGetAllResearchPapers();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ is_page_loading: false, all_research_papers: respond.data })
             } else {
                 this.setState({ is_page_loading: false })

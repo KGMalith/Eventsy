@@ -54,7 +54,7 @@ export class ConferencePreview extends Component {
             } else {
                 respond = await getConferencePreview(this.props.match.params.id);
             }
-            if (respond.success === true) {
+            if (respond.success) {
                 //conference name divide to make highlight
                 if (respond.data.conference_name) {
                     let wordsArray = respond.data.conference_name.split(" ");

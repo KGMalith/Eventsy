@@ -26,7 +26,7 @@ export class Contact extends Component {
 
         // this.setState({ issubmitLoading:true});
         // let respond = await submitContactMessage(data);
-        // if(respond.success === true){
+        // if(respond.success){
         //     resetForm({});
         //     toast.success(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
         //         position: "top-right",

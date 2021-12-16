@@ -24,7 +24,7 @@ export class ViewPendingWorkshops extends Component {
         let loadData = async () => {
             this.setState({ is_page_loading: true });
             let respond = await getAllPendingWorkshops();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ workshop_data_set: respond.data, is_page_loading: false })
             } else {
                 this.setState({ is_page_loading: false });

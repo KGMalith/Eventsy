@@ -41,7 +41,7 @@ export class EditPresentation extends Component {
             this.setState({ is_page_loading: true });
             let respond = await getAllSpeakersList();
             let presentationList = await getPresentation(this.props.match.params.id);
-            if (respond.success === true && presentationList.success === true) {
+            if (respond.success && presentationList.success) {
                 this.setState({ is_page_loading: false, speakers_data_set: respond.data, presentation_data: presentationList.data });
             } else {
                 this.setState({ is_page_loading: false });

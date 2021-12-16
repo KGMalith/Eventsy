@@ -18,7 +18,7 @@ export class VerifyEmail extends Component {
     async submitForm(value) {
         this.setState({ isFormLoading: true });
         let respond = await verifyEmail(this.state.user_email,value.code);
-        if (respond.success === true){
+        if (respond.success){
             this.setState({ isFormLoading: false });
             this.props.history.push('/signin');
         }else{
@@ -29,7 +29,7 @@ export class VerifyEmail extends Component {
     async resendCode() {
         this.setState({ isResendLoading:true});
         let respond = await resendToken(this.state.user_email);
-        if(respond.success === true){
+        if(respond.success){
             this.setState({ isResendLoading: false });
         }else{
             this.setState({ isResendLoading: false });

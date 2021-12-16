@@ -96,7 +96,7 @@ export class CreateConference extends Component {
         }
 
         let respond = await createConference(data);
-        if(respond.success === true){
+        if(respond.success){
             this.setState({ isSubmitLoading: false });
             window.location.reload();
         }else{

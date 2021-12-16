@@ -22,7 +22,7 @@ export class ForgotPassword extends Component {
     async submitForm(value) {
         this.setState({ is_submission_loading:true });
         let respond = await forgotPasswordEmailVerify(value.forgotPassEmail);
-        if (respond.success === true){
+        if (respond.success){
             this.setState({ view_page: 1, email_address: value.forgotPassEmail, is_submission_loading:false });
         }else{
             this.setState({ is_submission_loading: false });
@@ -33,7 +33,7 @@ export class ForgotPassword extends Component {
     async submitPasswordResetForm(value) {
         this.setState({ is_submission_loading: true });
         let respond = await resetPassword(value.verificationCode,this.state.email_address, value.password);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ is_submission_loading: false });
             this.props.history.push('/signin');
         } else {

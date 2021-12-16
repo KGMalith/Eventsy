@@ -36,7 +36,7 @@ export class EditPendingWorkshop extends Component {
         }
 
         let respond = await editPendingWorkshop(data);
-        if (respond.success === true){
+        if (respond.success){
             this.setState({ isSubmitLoading: false });
             this.props.history.push('/app/editor-view-pending-workshops');
         }else{
@@ -49,7 +49,7 @@ export class EditPendingWorkshop extends Component {
             this.setState({ is_page_loading: true });
             let respond = await getAllSpeakersList();
             let workshopResult = await getPendingWorkshop(this.props.match.params.id);
-            if (respond.success === true && workshopResult.success === true) {
+            if (respond.success && workshopResult.success === true) {
                 this.setState({ is_page_loading: false, speakers_data_set: respond.data, workshop_data: workshopResult.data });
             } else {
                 this.setState({ is_page_loading: false });
