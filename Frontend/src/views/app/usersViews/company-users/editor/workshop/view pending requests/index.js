@@ -84,7 +84,7 @@ function ViewPendingWorkshopRequests() {
         const LoadWorkshops = async () => {
             set_is_page_loading(true);
             let respond = await editorGetAllPendingWorkshopProposals();
-            if (respond.success === true) {
+            if (respond.success) {
                 set_is_page_loading(false);
                 set_workshop_request_list(respond.data)
             } else {

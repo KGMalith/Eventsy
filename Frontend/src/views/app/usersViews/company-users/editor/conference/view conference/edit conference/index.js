@@ -103,7 +103,7 @@ export class EditConference extends Component {
         }
 
         let respond = await editConference(data);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ isSubmitLoading: false });
             this.props.history.push('/app/editor-conferences');
         } else {

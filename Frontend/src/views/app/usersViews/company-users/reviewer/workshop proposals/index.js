@@ -18,7 +18,7 @@ export class WorkShopProposals extends Component {
         const LoadWorkshop = async () => {
             this.setState({ is_page_loading: true })
             let respond = await reviewerGetAllWorkshopProposals();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ is_page_loading: false, all_workshop_proposals: respond.data })
             } else {
                 this.setState({ is_page_loading: false })

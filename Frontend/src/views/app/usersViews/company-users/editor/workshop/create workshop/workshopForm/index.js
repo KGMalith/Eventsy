@@ -31,7 +31,6 @@ const WorkshopForm = (props) => {
                     errors,
                     handleChange,
                     handleSubmit,
-                    resetForm,
                     setFieldValue,
                     submitCount,
                     values

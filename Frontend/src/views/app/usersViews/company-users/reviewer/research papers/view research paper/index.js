@@ -30,7 +30,7 @@ function ViewResearchPaper() {
     async function AcceptResearchPaperRequest() {
         setSubmissionLoading(true);
         let respond = await reviewerAcceptResearchPaper(id);
-        if (respond.success === true) {
+        if (respond.success) {
             setSubmissionLoading(false);
             history.push('/app/reviewer-view-research-papers');
         } else {
@@ -41,7 +41,7 @@ function ViewResearchPaper() {
     async function RejectResearchPaperRequest() {
         setSubmissionLoading(true);
         let respond = await reviewerRejectResearchPaper(id);
-        if (respond.success === true) {
+        if (respond.success) {
             setSubmissionLoading(false);
             history.push('/app/reviewer-view-research-papers');
         } else {
@@ -90,7 +90,7 @@ function ViewResearchPaper() {
         const LoadSpeakers = async () => {
             set_page_loading(true);
             let respond = await reviewerGetResearchPaper(id);
-            if (respond.success === true) {
+            if (respond.success) {
                 let pdf_url = (respond.data.media_file).replace(/^.*\/\/[^\/]+/, '');
                 set_page_loading(false);
                 set_research_paper(respond.data);

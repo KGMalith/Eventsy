@@ -18,7 +18,7 @@ export class ViewPendingSpeakers extends Component {
         const LoadSpeakers = async () => {
             this.setState({ is_page_loading:true})
             let respond = await getPendingSpeakers();
-            if (respond.success === true) {
+            if (respond.success) {
                 this.setState({ is_page_loading: false, all_speakers: respond.data})
             }else{
                 this.setState({ is_page_loading: false })

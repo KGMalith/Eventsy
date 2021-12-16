@@ -106,7 +106,7 @@ export class EditPendingConference extends Component {
         }
 
         let respond = await editPendingConference(data);
-        if (respond.success === true) {
+        if (respond.success) {
             this.setState({ isSubmitLoading: false });
             this.props.history.push('/app/editor-pending-conferences');
         } else {

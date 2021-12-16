@@ -28,3 +28,18 @@ export const userTitleValues = [
         value: 'St.'
     },
 ];
+
+export const userRoleValues = [
+    {
+        label: 'Admin',
+        value: 5
+    },
+    {
+        label: 'Editor',
+        value: 4
+    },
+    {
+        label: 'Reviewer',
+        value: 3
+    },
+];

@@ -83,7 +83,7 @@ function ViewPendingPresentationRequests() {
         const LoadPresentations = async () => {
             set_is_page_loading(true);
             let respond = await editorGetAllPendingResearchPapers();
-            if (respond.success === true) {
+            if (respond.success) {
                 set_is_page_loading(false);
                 set_presentation_request_list(respond.data)
             } else {

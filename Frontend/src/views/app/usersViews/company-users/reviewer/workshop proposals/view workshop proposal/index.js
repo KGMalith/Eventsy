@@ -29,7 +29,7 @@ function ViewWorkshopProposal() {
     async function AcceptWorkshopPaperRequest() {
         setSubmissionLoading(true);
         let respond = await reviewerAcceptWorkshopPaper(id);
-        if (respond.success === true) {
+        if (respond.success) {
             setSubmissionLoading(false);
             history.push('/app/reviewer-view-workshop-proposals');
         } else {
@@ -40,7 +40,7 @@ function ViewWorkshopProposal() {
     async function RejectWorkshopPaperRequest() {
         setSubmissionLoading(true);
         let respond = await reviewerRejectWorkshopPaper(id);
-        if (respond.success === true) {
+        if (respond.success) {
             setSubmissionLoading(false);
             history.push('/app/reviewer-view-workshop-proposals');
         } else {
@@ -89,7 +89,7 @@ function ViewWorkshopProposal() {
         const LoadWorkshops = async () => {
             set_page_loading(true);
             let respond = await reviewerGetWorkshopProposal(id);
-            if (respond.success === true) {
+            if (respond.success) {
                 let pdf_url = (respond.data.media_file).replace(/^.*\/\/[^\/]+/, '');
                 set_page_loading(false);
                 set_workshop_paper(respond.data);

@@ -24,7 +24,7 @@ export class ViewRequestedConferece extends Component {
         // let loadData = async () => {
         //     this.setState({ isPageLoading: true });
         //     let respond = await getConference(this.props.match.params.id);
-        //     if (respond.success === true) {
+        //     if (respond.success) {
         //         this.setState({ conference_data_set: respond.data, isPageLoading: false })
         //     } else {
         //         toast.error(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
@@ -45,7 +45,7 @@ export class ViewRequestedConferece extends Component {
     async approveConference() {
         // this.setState({ isApproveLoading: true });
         // let respond = await approveConference(this.props.match.params.id);
-        // if (respond.success === true) {
+        // if (respond.success) {
         //     toast.success(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {
         //         position: "top-right",
         //         autoClose: 2500,
@@ -74,7 +74,7 @@ export class ViewRequestedConferece extends Component {
     async rejectConference() {
         // this.setState({ isRejectLoading: true });
         // let respond = await rejectConference(this.props.match.params.id);
-        // if (respond.success === true) {
+        // if (respond.success) {
         //     this.props.history.push('/app/admin-view-requested-conferences');
         // } else {
         //     toast.error(<div><i className="bi bi-exclamation-circle"></i>&nbsp;&nbsp;{respond.msg}</div>, {

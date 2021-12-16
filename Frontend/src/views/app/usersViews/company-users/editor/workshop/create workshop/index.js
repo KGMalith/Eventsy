@@ -34,7 +34,7 @@ export class CreateWorkshop extends Component {
             };
 
             let respond = await createWorkshop(data);
-            if(respond.success === true){
+            if(respond.success){
                 resetForm({});
                 this.props.history.go(0);
                 this.setState({ isSubmitLoading: false });
